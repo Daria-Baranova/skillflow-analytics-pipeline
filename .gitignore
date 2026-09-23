@@ -1,2 +1,3 @@
 .dlt/secrets.toml
 __pycache__/
+logs/
