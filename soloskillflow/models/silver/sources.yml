@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: "Raw SoloSkillflow data loaded by dlt from S3, GCS and NBU API"
+    database: soloskillflow 
+    schema: bronze
+    tables:
+      - name: users
+      - name: events
+      - name: subscriptions
+      - name: experiments
+      - name: marketing_spend
+      - name: app_errors
+      - name: lesson_progress
+      - name: lessons
+      - name: payments
+      - name: support_tickets
+      - name: nbu_rates
