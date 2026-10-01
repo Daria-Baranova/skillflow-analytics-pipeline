@@ -15,7 +15,7 @@ cleaned AS (
       user_id
     , coalesce(
           signup_at
-        , to_timestamp(signup_at__v_text, 'DD/MM/YYYY HH24:MI')
+        , to_timestamp(signup_at__v_text || ' +00', 'DD/MM/YYYY HH24:MI TZH')
       ) AS signup_at
     , CASE upper(trim(country))
         WHEN 'UA' THEN 'Ukraine'
