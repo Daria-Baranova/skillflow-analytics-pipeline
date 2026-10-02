@@ -70,3 +70,9 @@ Profiling of `bronze` tables and how each issue is handled in `silver` (dbt stag
 | Issue | Rows | Fix in `stg_support_tickets` |
 |---|---|---|
 | `category` in mixed case | ~540 | `lower(trim())` |
+
+## Known limitations
+| Limitation | Impact |
+|---|---|
+| Activity data covers max 22 days after signup | D30 retention cannot be measured — D14 used instead |
+| Events end on 2026-07-22 | July metrics (DAU/MAU) cover a partial month |
