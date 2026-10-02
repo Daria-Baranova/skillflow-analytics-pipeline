@@ -33,8 +33,8 @@ models:
   soloskillflow:
     silver:
       +schema: silver
-      +materialaized: view
+      +materialized: view
     gold:
       +schema: gold
-      +materialaized: table
+      +materialized: table
     
