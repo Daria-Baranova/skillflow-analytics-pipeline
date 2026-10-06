@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: dim_users
+    columns:
+      - name: user_id
+        data_tests: [unique, not_null]
+
+  - name: fct_payments
+    columns:
+      - name: payment_id
+        data_tests: [unique, not_null]
+      - name: amount_usd
+        data_tests: [not_null]
+
+  - name: fct_subscriptions
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "trial_status <> 'converted' or converted_at is not null"
+          config:
+            severity: warn
+    columns:
+      - name: subscription_id
+        data_tests: [unique, not_null]
+
+  - name: fct_user_activity
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [user_id, activity_date]
+    columns:
+      - name: days_since_signup
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+
+  - name: fct_funnel
+    columns:
+      - name: user_id
+        data_tests: [unique, not_null]
+
+  - name: fct_marketing
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [spend_date, channel, country]
+
+  - name: fct_experiment
+    columns:
+      - name: user_id
+        data_tests: [unique, not_null]
+
+  - name: fct_experiment_results
+    columns:
+      - name: result
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['better', 'worse', 'no difference']
