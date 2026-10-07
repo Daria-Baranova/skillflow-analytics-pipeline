@@ -2,11 +2,13 @@ version: 2
 
 models:
   - name: dim_users
+    description: "One row per user: attributes, signup cohort (week), acquisition channel and A/B group."
     columns:
       - name: user_id
         data_tests: [unique, not_null]
 
   - name: fct_payments
+    description: "One row per payment, all amounts converted to USD using daily NBU rates."
     columns:
       - name: payment_id
         data_tests: [unique, not_null]
@@ -14,6 +16,7 @@ models:
         data_tests: [not_null]
 
   - name: fct_subscriptions
+    description: "One row per subscription: trial outcome, revenue in USD and monthly value for MRR."
     data_tests:
       - dbt_utils.expression_is_true:
           arguments:
@@ -25,6 +28,7 @@ models:
         data_tests: [unique, not_null]
 
   - name: fct_user_activity
+    description: "One row per user per active day. Base for DAU/WAU/MAU, stickiness and retention."
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
@@ -37,25 +41,32 @@ models:
                 min_value: 0
 
   - name: fct_funnel
+    description: 	"One row per user with first timestamp of each of 7 funnel steps. Activation = first completed lesson."
     columns:
       - name: user_id
         data_tests: [unique, not_null]
 
   - name: fct_marketing
+    description: "Daily marketing spend by channel and country joined with signups and paying users. Base for CAC."
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns: [spend_date, channel, country]
 
   - name: fct_experiment
+    description: "One row per A/B test participant with binary primary, secondary and guardrail metrics."
     columns:
       - name: user_id
         data_tests: [unique, not_null]
 
   - name: fct_experiment_results
+    description: "A/B test summary: lift and 95% CI per metric, result = better / worse / no difference."
     columns:
       - name: result
         data_tests:
           - accepted_values:
               arguments:
                 values: ['better', 'worse', 'no difference']
+  
+  - name: fct_retention
+    description: "Weekly signup cohorts with D1/D7/D14 retention. D30 not measurable (see docs/data_quality.md)."
