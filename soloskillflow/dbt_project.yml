@@ -37,4 +37,6 @@ models:
     gold:
       +schema: gold
       +materialized: table
+      +grants:
+        select: ['superset_reader']
     
