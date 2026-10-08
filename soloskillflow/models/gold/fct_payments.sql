@@ -6,6 +6,10 @@ rates AS (
     SELECT * FROM {{ ref('stg_nbu_rates') }}
 ),
 
+users AS (
+    SELECT user_id, is_test_account FROM {{ ref('dim_users') }}
+),
+
 converted AS (
     SELECT 
         p.payment_id
@@ -24,11 +28,14 @@ converted AS (
             , 2) AS amount_usd
         , p.status
         , p.is_refund
+        , u.is_test_account
     FROM payments AS p 
     LEFT JOIN rates AS usd 
         ON usd.rate_date = p.paid_date AND usd.currency_code = 'USD'
     LEFT JOIN rates AS eur 
         ON eur.rate_date = p.paid_date AND eur.currency_code = 'EUR'
+    LEFT JOIN users AS u
+        ON u.user_id = p.user_id
 )
 
 SELECT *
