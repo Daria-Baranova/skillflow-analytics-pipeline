@@ -70,3 +70,10 @@ models:
   
   - name: fct_retention
     description: "Weekly signup cohorts with D1/D7/D14 retention. D30 not measurable (see docs/data_quality.md)."
+
+  - name: fct_funnel_steps
+    description: "Strict funnel in long format: one row per user per reached step. A step counts only if all previous steps were reached. Test accounts excluded."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [user_id, step_order]
