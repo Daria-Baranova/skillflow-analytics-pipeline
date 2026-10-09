@@ -35,7 +35,10 @@ final AS (
         , f.lesson_started_at
         , f.lesson_completed_at
         , f.lesson_completed_at IS NOT NULL AS is_activated
-        , ROUND(extract(EPOCH FROM f.lesson_completed_at - f.signup_at) / 3600, 1)  AS hours_to_first_value
+        , CASE
+              WHEN f.lesson_completed_at >= f.signup_at
+              THEN round(extract(EPOCH FROM f.lesson_completed_at - f.signup_at) / 3600, 1)
+          END AS hours_to_first_value 
     FROM users AS u 
     LEFT JOIN first_steps AS f 
         ON f.user_id = u.user_id

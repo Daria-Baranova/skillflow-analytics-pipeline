@@ -45,6 +45,11 @@ models:
     columns:
       - name: user_id
         data_tests: [unique, not_null]
+      - name: hours_to_first_value
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
 
   - name: fct_marketing
     description: "Daily marketing spend by channel and country joined with signups and paying users. Base for CAC."
