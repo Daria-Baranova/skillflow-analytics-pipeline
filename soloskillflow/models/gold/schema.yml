@@ -82,3 +82,15 @@ models:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns: [user_id, step_order]
+    
+  - name: fct_retention_curve
+    description: "Retention curve: % of users active on day N after signup (N = 0..20), denominator = users whose day N is already observable. Activity data ends at day 21 after signup."
+    columns:
+      - name: day_n
+        data_tests: [unique, not_null]
+      - name: retention_pct
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 100
