@@ -3,6 +3,7 @@ WITH users AS (
         user_id
         , signup_date 
     FROM {{ ref('dim_users') }}
+    WHERE NOT is_test_account
 ),
 
 activity AS (
