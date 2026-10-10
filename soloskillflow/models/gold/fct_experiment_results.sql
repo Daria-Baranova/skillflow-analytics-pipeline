@@ -111,6 +111,16 @@ final AS (
                     THEN 'better'
                 ELSE 'worse'
           END AS result
+        , CASE
+              WHEN p_b - p_a - margin <= 0 AND p_b - p_a + margin >= 0 THEN '⚪ no difference'
+              WHEN (p_b > p_a) = higher_is_better THEN '🟢 better'
+              ELSE '🔴 worse'
+          END AS result_label
+        , CASE metric_type
+              WHEN 'primary'   THEN 1
+              WHEN 'secondary' THEN 2
+              WHEN 'guardrail' THEN 3
+          END AS metric_order
     FROM calc
 )
 
