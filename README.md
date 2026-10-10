@@ -17,18 +17,15 @@ flowchart LR
     GCS[(Google Cloud Storage<br/>payments, lessons,<br/>lesson_progress,<br/>app_errors,<br/>support_tickets)] --> DLT
     NBU[(NBU API<br/>USD/EUR rates)] --> DLT
     DLT[dlt ingestion] --> BRONZE[bronze<br/>raw tables]
-    BRONZE --> SILVER[silver<br/>11 staging views<br/>cleaned & deduplicated]
-    SILVER --> GOLD[gold<br/>13 fact & dim tables]
+    BRONZE -->|dbt| SILVER[silver<br/>11 staging views<br/>cleaned & deduplicated]
+    SILVER -->|dbt| GOLD[gold<br/>13 fact & dim tables]
     GOLD --> SS[Apache Superset<br/>7-tab dashboard]
     subgraph PostgreSQL
         BRONZE
         SILVER
         GOLD
     end
-    subgraph dbt
-        SILVER
-        GOLD
-    end
+    
 ```
 
 ## Tech stack
