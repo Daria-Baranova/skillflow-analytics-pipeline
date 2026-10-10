@@ -1,0 +1,60 @@
+slice_name: Where do we lose users?
+description: null
+certified_by: null
+certification_details: null
+viz_type: funnel
+params:
+  datasource: 10__table
+  viz_type: funnel
+  matrixify_enable: false
+  matrixify_mode_columns: disabled
+  matrixify_dimension_selection_mode_columns: members
+  matrixify_dimension_columns:
+    dimension: ''
+    values: []
+  matrixify_topn_value_columns: 10
+  matrixify_all_sort_by_columns: a_to_z
+  matrixify_topn_order_columns: true
+  matrixify_show_column_headers: true
+  matrixify_fit_columns_dynamically: true
+  matrixify_mode_rows: disabled
+  matrixify_dimension_selection_mode_rows: members
+  matrixify_dimension_rows:
+    dimension: ''
+    values: []
+  matrixify_topn_value_rows: 10
+  matrixify_all_sort_by_rows: a_to_z
+  matrixify_topn_order_rows: true
+  matrixify_show_row_labels: true
+  matrixify_row_height: 300
+  matrixify_charts_per_row: 4
+  matrixify_cell_title_template: ''
+  groupby:
+  - step_name
+  metric: users
+  adhoc_filters:
+  - clause: WHERE
+    subject: signup_week
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    expressionType: SIMPLE
+  row_limit: 10
+  sort_by_metric: true
+  percent_calculation_type: prev_step
+  color_scheme: supersetColors
+  show_legend: false
+  legendOrientation: top
+  label_type: 5
+  tooltip_label_type: 5
+  number_format: SMART_NUMBER
+  show_labels: true
+  show_tooltip_labels: true
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource":{"id":10,"type":"table"},"force":false,"queries":[{"filters":[{"col":"signup_week","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":["step_name"],"metrics":["users"],"orderby":[["users",false]],"annotation_layers":[],"row_limit":10,"series_limit":0,"group_others_when_limit_reached":false,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"10__table","viz_type":"funnel","matrixify_enable":false,"matrixify_mode_columns":"disabled","matrixify_dimension_selection_mode_columns":"members","matrixify_dimension_columns":{"dimension":"","values":[]},"matrixify_topn_value_columns":10,"matrixify_all_sort_by_columns":"a_to_z","matrixify_topn_order_columns":true,"matrixify_show_column_headers":true,"matrixify_fit_columns_dynamically":true,"matrixify_mode_rows":"disabled","matrixify_dimension_selection_mode_rows":"members","matrixify_dimension_rows":{"dimension":"","values":[]},"matrixify_topn_value_rows":10,"matrixify_all_sort_by_rows":"a_to_z","matrixify_topn_order_rows":true,"matrixify_show_row_labels":true,"matrixify_row_height":300,"matrixify_charts_per_row":4,"matrixify_cell_title_template":"","groupby":["step_name"],"metric":"users","adhoc_filters":[{"clause":"WHERE","subject":"signup_week","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","expressionType":"SIMPLE"}],"row_limit":10,"sort_by_metric":true,"percent_calculation_type":"prev_step","color_scheme":"supersetColors","show_legend":false,"legendOrientation":"top","label_type":5,"tooltip_label_type":5,"number_format":"SMART_NUMBER","show_labels":true,"show_tooltip_labels":true,"extra_form_data":{},"dashboards":[],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 15b131a0-4d6d-4b6a-9f11-27590e8ffdfb
+version: 1.0.0
+dataset_uuid: b02cbc24-7438-4f9c-8683-49c28ffad26b

@@ -1,0 +1,126 @@
+slice_name: Which channel is worth the money?
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 5__table
+  viz_type: table
+  matrixify_enable: false
+  matrixify_mode_columns: disabled
+  matrixify_dimension_selection_mode_columns: members
+  matrixify_dimension_columns:
+    dimension: ''
+    values: []
+  matrixify_topn_value_columns: 10
+  matrixify_all_sort_by_columns: a_to_z
+  matrixify_topn_order_columns: true
+  matrixify_show_column_headers: true
+  matrixify_fit_columns_dynamically: true
+  matrixify_mode_rows: disabled
+  matrixify_dimension_selection_mode_rows: members
+  matrixify_dimension_rows:
+    dimension: ''
+    values: []
+  matrixify_topn_value_rows: 10
+  matrixify_all_sort_by_rows: a_to_z
+  matrixify_topn_order_rows: true
+  matrixify_show_row_labels: true
+  matrixify_row_height: 300
+  matrixify_charts_per_row: 3
+  matrixify_cell_title_template: ''
+  query_mode: aggregate
+  groupby:
+  - channel
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    spend_date: true
+  metrics:
+  - spend
+  - mkt_signups
+  - paying_users
+  - cac_signup
+  - cac_paying
+  all_columns: []
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    subject: spend_date
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    expressionType: SIMPLE
+  timeseries_limit_metric: cac_paying
+  order_by_cols: []
+  order_desc: false
+  server_pagination: false
+  server_page_length: 10
+  row_limit: 10000
+  percent_metric_calculation: row_limit
+  show_totals: false
+  table_timestamp_format: smart_date
+  include_search: false
+  allow_rearrange_columns: false
+  allow_render_html: true
+  show_cell_bars: false
+  align_pn: false
+  color_pn: true
+  comparison_color_enabled: false
+  comparison_color_scheme: Green
+  conditional_formatting:
+  - column: cac_paying
+    colorScheme: colorError
+    columnFormatting: cac_paying
+    objectFormatting: BACKGROUND_COLOR
+    operator: '>'
+    useGradient: true
+    targetValue: 100
+  - column: cac_paying
+    colorScheme: colorSuccess
+    columnFormatting: cac_paying
+    objectFormatting: BACKGROUND_COLOR
+    operator: "\u2264"
+    useGradient: true
+    targetValue: 100
+  comparison_type: values
+  extra_form_data: {}
+  dashboards: []
+query_context: "{\"datasource\":{\"id\":5,\"type\":\"table\"},\"force\":false,\"queries\"\
+  :[{\"filters\":[{\"col\":\"spend_date\",\"op\":\"TEMPORAL_RANGE\",\"val\":\"No filter\"\
+  }],\"extras\":{\"time_grain_sqla\":\"P1D\",\"having\":\"\",\"where\":\"\"},\"applied_time_extras\"\
+  :{},\"columns\":[\"channel\"],\"metrics\":[\"spend\",\"mkt_signups\",\"paying_users\"\
+  ,\"cac_signup\",\"cac_paying\"],\"orderby\":[[\"cac_paying\",true]],\"annotation_layers\"\
+  :[],\"row_limit\":10000,\"series_limit\":0,\"series_limit_metric\":\"cac_paying\"\
+  ,\"group_others_when_limit_reached\":false,\"order_desc\":false,\"url_params\":{},\"\
+  custom_params\":{},\"custom_form_data\":{},\"post_processing\":[],\"time_offsets\"\
+  :[]}],\"form_data\":{\"datasource\":\"5__table\",\"viz_type\":\"table\",\"matrixify_enable\"\
+  :false,\"matrixify_mode_columns\":\"disabled\",\"matrixify_dimension_selection_mode_columns\"\
+  :\"members\",\"matrixify_dimension_columns\":{\"dimension\":\"\",\"values\":[]},\"\
+  matrixify_topn_value_columns\":10,\"matrixify_all_sort_by_columns\":\"a_to_z\",\"\
+  matrixify_topn_order_columns\":true,\"matrixify_show_column_headers\":true,\"matrixify_fit_columns_dynamically\"\
+  :true,\"matrixify_mode_rows\":\"disabled\",\"matrixify_dimension_selection_mode_rows\"\
+  :\"members\",\"matrixify_dimension_rows\":{\"dimension\":\"\",\"values\":[]},\"\
+  matrixify_topn_value_rows\":10,\"matrixify_all_sort_by_rows\":\"a_to_z\",\"matrixify_topn_order_rows\"\
+  :true,\"matrixify_show_row_labels\":true,\"matrixify_row_height\":300,\"matrixify_charts_per_row\"\
+  :3,\"matrixify_cell_title_template\":\"\",\"query_mode\":\"aggregate\",\"groupby\"\
+  :[\"channel\"],\"time_grain_sqla\":\"P1D\",\"temporal_columns_lookup\":{\"spend_date\"\
+  :true},\"metrics\":[\"spend\",\"mkt_signups\",\"paying_users\",\"cac_signup\",\"\
+  cac_paying\"],\"all_columns\":[],\"percent_metrics\":[],\"adhoc_filters\":[{\"clause\"\
+  :\"WHERE\",\"subject\":\"spend_date\",\"operator\":\"TEMPORAL_RANGE\",\"comparator\"\
+  :\"No filter\",\"expressionType\":\"SIMPLE\"}],\"timeseries_limit_metric\":\"cac_paying\"\
+  ,\"order_by_cols\":[],\"order_desc\":false,\"server_pagination\":false,\"server_page_length\"\
+  :10,\"row_limit\":10000,\"percent_metric_calculation\":\"row_limit\",\"show_totals\"\
+  :false,\"table_timestamp_format\":\"smart_date\",\"include_search\":false,\"allow_rearrange_columns\"\
+  :false,\"allow_render_html\":true,\"show_cell_bars\":false,\"align_pn\":false,\"\
+  color_pn\":true,\"comparison_color_enabled\":false,\"comparison_color_scheme\":\"\
+  Green\",\"conditional_formatting\":[{\"column\":\"cac_paying\",\"colorScheme\":\"\
+  colorError\",\"columnFormatting\":\"cac_paying\",\"objectFormatting\":\"BACKGROUND_COLOR\"\
+  ,\"operator\":\">\",\"useGradient\":true,\"targetValue\":100},{\"column\":\"cac_paying\"\
+  ,\"colorScheme\":\"colorSuccess\",\"columnFormatting\":\"cac_paying\",\"objectFormatting\"\
+  :\"BACKGROUND_COLOR\",\"operator\":\"\u2264\",\"useGradient\":true,\"targetValue\"\
+  :100}],\"comparison_type\":\"values\",\"extra_form_data\":{},\"dashboards\":[],\"\
+  force\":false,\"result_format\":\"json\",\"result_type\":\"full\"},\"result_format\"\
+  :\"json\",\"result_type\":\"full\"}"
+cache_timeout: null
+uuid: 570bc049-ca23-4f10-9f25-d59847c7a987
+version: 1.0.0
+dataset_uuid: 0b147e33-dd2c-420d-bdec-1f0f72258ff0

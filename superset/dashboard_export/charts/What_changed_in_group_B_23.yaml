@@ -1,0 +1,98 @@
+slice_name: What changed in group B?
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 4__table
+  viz_type: table
+  matrixify_enable: false
+  matrixify_mode_columns: disabled
+  matrixify_dimension_selection_mode_columns: members
+  matrixify_dimension_columns:
+    dimension: ''
+    values: []
+  matrixify_topn_value_columns: 10
+  matrixify_all_sort_by_columns: a_to_z
+  matrixify_topn_order_columns: true
+  matrixify_show_column_headers: true
+  matrixify_fit_columns_dynamically: true
+  matrixify_mode_rows: disabled
+  matrixify_dimension_selection_mode_rows: members
+  matrixify_dimension_rows:
+    dimension: ''
+    values: []
+  matrixify_topn_value_rows: 10
+  matrixify_all_sort_by_rows: a_to_z
+  matrixify_topn_order_rows: true
+  matrixify_show_row_labels: true
+  matrixify_row_height: 300
+  matrixify_charts_per_row: 3
+  matrixify_cell_title_template: ''
+  query_mode: raw
+  groupby: []
+  time_grain_sqla: P1D
+  temporal_columns_lookup: {}
+  all_columns:
+  - label: Metric
+    sqlExpression: metric
+    expressionType: SQL
+  - label: Type
+    sqlExpression: metric_type
+    expressionType: SQL
+  - label: Group A, %
+    sqlExpression: a_pct
+    expressionType: SQL
+  - label: Group B, %
+    sqlExpression: b_pct
+    expressionType: SQL
+  - label: Lift, %
+    sqlExpression: lift_pct
+    expressionType: SQL
+  - label: CI low, pp
+    sqlExpression: ci_low_pp
+    expressionType: SQL
+  - label: CI high, pp
+    sqlExpression: ci_high_pp
+    expressionType: SQL
+  - label: Result
+    sqlExpression: result_label
+    expressionType: SQL
+  percent_metrics: []
+  adhoc_filters: []
+  order_by_cols:
+  - '["metric_order", true]'
+  order_desc: true
+  server_pagination: false
+  server_page_length: 10
+  row_limit: 10000
+  percent_metric_calculation: row_limit
+  show_totals: false
+  table_timestamp_format: smart_date
+  include_search: false
+  allow_rearrange_columns: false
+  allow_render_html: true
+  column_config:
+    metric:
+      truncateLongCells: false
+  show_cell_bars: false
+  align_pn: false
+  color_pn: true
+  comparison_color_enabled: false
+  comparison_color_scheme: Green
+  conditional_formatting: []
+  comparison_type: values
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource":{"id":4,"type":"table"},"force":false,"queries":[{"filters":[],"extras":{"time_grain_sqla":"P1D","having":"","where":""},"applied_time_extras":{},"columns":[{"label":"Metric","sqlExpression":"metric","expressionType":"SQL"},{"label":"Type","sqlExpression":"metric_type","expressionType":"SQL"},{"label":"Group
+  A, %","sqlExpression":"a_pct","expressionType":"SQL"},{"label":"Group B, %","sqlExpression":"b_pct","expressionType":"SQL"},{"label":"Lift,
+  %","sqlExpression":"lift_pct","expressionType":"SQL"},{"label":"CI low, pp","sqlExpression":"ci_low_pp","expressionType":"SQL"},{"label":"CI
+  high, pp","sqlExpression":"ci_high_pp","expressionType":"SQL"},{"label":"Result","sqlExpression":"result_label","expressionType":"SQL"}],"orderby":[["metric_order",true]],"annotation_layers":[],"row_limit":10000,"series_limit":0,"group_others_when_limit_reached":false,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[],"time_offsets":[]}],"form_data":{"datasource":"4__table","viz_type":"table","matrixify_enable":false,"matrixify_mode_columns":"disabled","matrixify_dimension_selection_mode_columns":"members","matrixify_dimension_columns":{"dimension":"","values":[]},"matrixify_topn_value_columns":10,"matrixify_all_sort_by_columns":"a_to_z","matrixify_topn_order_columns":true,"matrixify_show_column_headers":true,"matrixify_fit_columns_dynamically":true,"matrixify_mode_rows":"disabled","matrixify_dimension_selection_mode_rows":"members","matrixify_dimension_rows":{"dimension":"","values":[]},"matrixify_topn_value_rows":10,"matrixify_all_sort_by_rows":"a_to_z","matrixify_topn_order_rows":true,"matrixify_show_row_labels":true,"matrixify_row_height":300,"matrixify_charts_per_row":3,"matrixify_cell_title_template":"","query_mode":"raw","groupby":[],"time_grain_sqla":"P1D","temporal_columns_lookup":{},"all_columns":[{"label":"Metric","sqlExpression":"metric","expressionType":"SQL"},{"label":"Type","sqlExpression":"metric_type","expressionType":"SQL"},{"label":"Group
+  A, %","sqlExpression":"a_pct","expressionType":"SQL"},{"label":"Group B, %","sqlExpression":"b_pct","expressionType":"SQL"},{"label":"Lift,
+  %","sqlExpression":"lift_pct","expressionType":"SQL"},{"label":"CI low, pp","sqlExpression":"ci_low_pp","expressionType":"SQL"},{"label":"CI
+  high, pp","sqlExpression":"ci_high_pp","expressionType":"SQL"},{"label":"Result","sqlExpression":"result_label","expressionType":"SQL"}],"percent_metrics":[],"adhoc_filters":[],"order_by_cols":["[\"metric_order\",
+  true]"],"order_desc":true,"server_pagination":false,"server_page_length":10,"row_limit":10000,"percent_metric_calculation":"row_limit","show_totals":false,"table_timestamp_format":"smart_date","include_search":false,"allow_rearrange_columns":false,"allow_render_html":true,"column_config":{"metric":{"truncateLongCells":false}},"show_cell_bars":false,"align_pn":false,"color_pn":true,"comparison_color_enabled":false,"comparison_color_scheme":"Green","conditional_formatting":[],"comparison_type":"values","extra_form_data":{},"dashboards":[],"force":false,"result_format":"json","result_type":"full","include_time":false},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 97aad28c-29bd-410b-8f1c-894aa2ee7ca3
+version: 1.0.0
+dataset_uuid: 3152aae7-60e7-4468-8ac2-9832f88de0d7

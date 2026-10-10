@@ -1,0 +1,90 @@
+slice_name: How many new users reach the aha-moment?
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 1__table
+  viz_type: big_number_total
+  slice_id: 1
+  matrixify_enable: false
+  matrixify_mode_columns: disabled
+  matrixify_dimension_selection_mode_columns: members
+  matrixify_dimension_columns:
+    dimension: ''
+    values: []
+  matrixify_topn_value_columns: 10
+  matrixify_all_sort_by_columns: a_to_z
+  matrixify_topn_order_columns: true
+  matrixify_show_column_headers: true
+  matrixify_fit_columns_dynamically: true
+  matrixify_mode_rows: disabled
+  matrixify_dimension_selection_mode_rows: members
+  matrixify_dimension_rows:
+    dimension: ''
+    values: []
+  matrixify_topn_value_rows: 10
+  matrixify_all_sort_by_rows: a_to_z
+  matrixify_topn_order_rows: true
+  matrixify_show_row_labels: true
+  matrixify_row_height: 300
+  matrixify_charts_per_row: 4
+  matrixify_cell_title_template: ''
+  metric: activation_rate
+  adhoc_filters:
+  - clause: WHERE
+    comparator: No filter
+    expressionType: SIMPLE
+    operator: TEMPORAL_RANGE
+    subject: signup_week
+  header_font_size: 0.4
+  subtitle: "% of new users completed first lesson \xB7 edtech benchmark 20\u2013\
+    40%"
+  subtitle_font_size: 0.15
+  show_metric_name: false
+  metric_name_font_size: 0.15
+  y_axis_format: ',.1f'
+  time_format: smart_date
+  force_timestamp_formatting: false
+  conditional_formatting:
+  - column: activation_rate
+    colorScheme: colorError
+    operator: <
+    targetValue: 20
+  - column: activation_rate
+    colorScheme: colorSuccess
+    operator: "\u2265"
+    targetValue: 20
+  extra_form_data: {}
+  dashboards:
+  - 1
+query_context: "{\"datasource\":{\"id\":1,\"type\":\"table\"},\"force\":false,\"queries\"\
+  :[{\"filters\":[{\"col\":\"signup_week\",\"op\":\"TEMPORAL_RANGE\",\"val\":\"No\
+  \ filter\"}],\"extras\":{\"having\":\"\",\"where\":\"\"},\"applied_time_extras\"\
+  :{},\"columns\":[],\"metrics\":[\"activation_rate\"],\"annotation_layers\":[],\"\
+  series_limit\":0,\"group_others_when_limit_reached\":false,\"order_desc\":true,\"\
+  url_params\":{},\"custom_params\":{},\"custom_form_data\":{}}],\"form_data\":{\"\
+  datasource\":\"1__table\",\"viz_type\":\"big_number_total\",\"slice_id\":1,\"matrixify_enable\"\
+  :false,\"matrixify_mode_columns\":\"disabled\",\"matrixify_dimension_selection_mode_columns\"\
+  :\"members\",\"matrixify_dimension_columns\":{\"dimension\":\"\",\"values\":[]},\"\
+  matrixify_topn_value_columns\":10,\"matrixify_all_sort_by_columns\":\"a_to_z\",\"\
+  matrixify_topn_order_columns\":true,\"matrixify_show_column_headers\":true,\"matrixify_fit_columns_dynamically\"\
+  :true,\"matrixify_mode_rows\":\"disabled\",\"matrixify_dimension_selection_mode_rows\"\
+  :\"members\",\"matrixify_dimension_rows\":{\"dimension\":\"\",\"values\":[]},\"\
+  matrixify_topn_value_rows\":10,\"matrixify_all_sort_by_rows\":\"a_to_z\",\"matrixify_topn_order_rows\"\
+  :true,\"matrixify_show_row_labels\":true,\"matrixify_row_height\":300,\"matrixify_charts_per_row\"\
+  :4,\"matrixify_cell_title_template\":\"\",\"metric\":\"activation_rate\",\"adhoc_filters\"\
+  :[{\"clause\":\"WHERE\",\"comparator\":\"No filter\",\"expressionType\":\"SIMPLE\"\
+  ,\"operator\":\"TEMPORAL_RANGE\",\"subject\":\"signup_week\"}],\"header_font_size\"\
+  :0.4,\"subtitle\":\"% of new users completed first lesson \xB7 edtech benchmark\
+  \ 20\u201340%\",\"subtitle_font_size\":0.15,\"show_metric_name\":false,\"metric_name_font_size\"\
+  :0.15,\"y_axis_format\":\",.1f\",\"time_format\":\"smart_date\",\"force_timestamp_formatting\"\
+  :false,\"conditional_formatting\":[{\"column\":\"activation_rate\",\"colorScheme\"\
+  :\"colorError\",\"operator\":\"<\",\"targetValue\":20},{\"column\":\"activation_rate\"\
+  ,\"colorScheme\":\"colorSuccess\",\"operator\":\"\u2265\",\"targetValue\":20}],\"\
+  extra_form_data\":{},\"dashboards\":[1],\"force\":false,\"result_format\":\"json\"\
+  ,\"result_type\":\"full\"},\"result_format\":\"json\",\"result_type\":\"full\"}"
+cache_timeout: null
+uuid: 2b4bad93-c91c-4ed8-b819-473ad95127cf
+version: 1.0.0
+dataset_uuid: 5d8463d3-2e10-4669-a3cf-91a5a10d4b74

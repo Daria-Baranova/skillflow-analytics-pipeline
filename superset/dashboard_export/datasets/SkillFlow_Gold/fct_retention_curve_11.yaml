@@ -1,0 +1,107 @@
+table_name: fct_retention_curve
+main_dttm_col: null
+currency_code_column: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: soloskillflow
+schema: gold
+sql: ''
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: []
+uuid: 77268fae-24e2-406d-9c2a-1aebefe952f6
+metrics:
+- metric_name: stickiness
+  verbose_name: Stickiness (DAU/MAU), %
+  metric_type: null
+  expression: ROUND(100.0 * COUNT(*) FILTER (WHERE NOT is_test_account) / NULLIF(COUNT(DISTINCT
+    activity_date), 0) / NULLIF(COUNT(DISTINCT user_id) FILTER (WHERE NOT is_test_account),
+    0), 1)
+  description: "Average DAU divided by unique users active in the selected period.\
+    \ Shows how many days per month the product is used. 10\u201320% is typical, 20%+\
+    \ is good."
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+- metric_name: dau
+  verbose_name: Active users
+  metric_type: null
+  expression: COUNT(DISTINCT user_id) FILTER (WHERE NOT is_test_account)
+  description: Unique active users in the period (per day on a daily chart = DAU).
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: eligible_users
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: returned_users
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: retention_pct
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NUMERIC
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: day_n
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 268ed9ba-b717-441a-8759-490ce258cd2e

@@ -1,0 +1,87 @@
+slice_name: How long until the first lesson?
+description: null
+certified_by: null
+certification_details: null
+viz_type: histogram_v2
+params:
+  datasource: 1__table
+  viz_type: histogram_v2
+  matrixify_enable: false
+  matrixify_mode_columns: disabled
+  matrixify_dimension_selection_mode_columns: members
+  matrixify_dimension_columns:
+    dimension: ''
+    values: []
+  matrixify_topn_value_columns: 10
+  matrixify_all_sort_by_columns: a_to_z
+  matrixify_topn_order_columns: true
+  matrixify_show_column_headers: true
+  matrixify_fit_columns_dynamically: true
+  matrixify_mode_rows: disabled
+  matrixify_dimension_selection_mode_rows: members
+  matrixify_dimension_rows:
+    dimension: ''
+    values: []
+  matrixify_topn_value_rows: 10
+  matrixify_all_sort_by_rows: a_to_z
+  matrixify_topn_order_rows: true
+  matrixify_show_row_labels: true
+  matrixify_row_height: 300
+  matrixify_charts_per_row: 4
+  matrixify_cell_title_template: ''
+  column: hours_to_first_value
+  groupby: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: signup_week
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_74udevgupqk_nrs1s3m8c9j
+  - expressionType: SIMPLE
+    subject: is_test_account
+    operator: IS FALSE
+    operatorId: IS_FALSE
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_kembuv0mp6q_wkekzr9qa1
+  - expressionType: SIMPLE
+    subject: hours_to_first_value
+    operator: IS NOT NULL
+    operatorId: IS_NOT_NULL
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_7sgrelw8w44_nsn1791ql1i
+  row_limit: 50000
+  bins: 20
+  normalize: false
+  cumulative: false
+  color_scheme: supersetColors
+  show_value: false
+  show_legend: true
+  x_axis_title: ''
+  x_axis_format: SMART_NUMBER
+  y_axis_title: ''
+  y_axis_format: SMART_NUMBER
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource":{"id":1,"type":"table"},"force":false,"queries":[{"filters":[{"col":"signup_week","op":"TEMPORAL_RANGE","val":"No
+  filter"},{"col":"is_test_account","op":"IS FALSE"},{"col":"hours_to_first_value","op":"IS
+  NOT NULL"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":["hours_to_first_value"],"annotation_layers":[],"row_limit":50000,"series_limit":0,"group_others_when_limit_reached":false,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[{"operation":"histogram","options":{"column":"hours_to_first_value","groupby":[],"bins":20,"cumulative":false,"normalize":false}}]}],"form_data":{"datasource":"1__table","viz_type":"histogram_v2","matrixify_enable":false,"matrixify_mode_columns":"disabled","matrixify_dimension_selection_mode_columns":"members","matrixify_dimension_columns":{"dimension":"","values":[]},"matrixify_topn_value_columns":10,"matrixify_all_sort_by_columns":"a_to_z","matrixify_topn_order_columns":true,"matrixify_show_column_headers":true,"matrixify_fit_columns_dynamically":true,"matrixify_mode_rows":"disabled","matrixify_dimension_selection_mode_rows":"members","matrixify_dimension_rows":{"dimension":"","values":[]},"matrixify_topn_value_rows":10,"matrixify_all_sort_by_rows":"a_to_z","matrixify_topn_order_rows":true,"matrixify_show_row_labels":true,"matrixify_row_height":300,"matrixify_charts_per_row":4,"matrixify_cell_title_template":"","column":"hours_to_first_value","groupby":[],"adhoc_filters":[{"expressionType":"SIMPLE","subject":"signup_week","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_74udevgupqk_nrs1s3m8c9j"},{"expressionType":"SIMPLE","subject":"is_test_account","operator":"IS
+  FALSE","operatorId":"IS_FALSE","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_kembuv0mp6q_wkekzr9qa1"},{"expressionType":"SIMPLE","subject":"hours_to_first_value","operator":"IS
+  NOT NULL","operatorId":"IS_NOT_NULL","clause":"WHERE","sqlExpression":null,"isExtra":false,"isNew":false,"datasourceWarning":false,"filterOptionName":"filter_7sgrelw8w44_nsn1791ql1i"}],"row_limit":50000,"bins":20,"normalize":false,"cumulative":false,"color_scheme":"supersetColors","show_value":false,"show_legend":true,"x_axis_title":"","x_axis_format":"SMART_NUMBER","y_axis_title":"","y_axis_format":"SMART_NUMBER","extra_form_data":{},"dashboards":[],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: bb19f967-32bb-4030-bcf7-edc6d2e8a7f0
+version: 1.0.0
+dataset_uuid: 5d8463d3-2e10-4669-a3cf-91a5a10d4b74

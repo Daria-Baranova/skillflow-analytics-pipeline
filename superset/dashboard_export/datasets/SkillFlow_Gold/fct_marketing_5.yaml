@@ -1,0 +1,185 @@
+table_name: fct_marketing
+main_dttm_col: spend_date
+currency_code_column: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: soloskillflow
+schema: gold
+sql: ''
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: []
+uuid: 0b147e33-dd2c-420d-bdec-1f0f72258ff0
+metrics:
+- metric_name: cac_paying
+  verbose_name: CAC per paying customer, USD
+  metric_type: null
+  expression: ROUND(SUM(spend_usd) / NULLIF(SUM(paying_users), 0), 0)
+  description: "Marketing spend divided by paying customers acquired. Compare with\
+    \ revenue per customer: healthy business needs LTV : CAC \u2265 3 : 1."
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: cac_signup
+  verbose_name: CAC per signup, USD
+  metric_type: null
+  expression: ROUND(SUM(spend_usd) / NULLIF(SUM(signups), 0), 2)
+  description: "Spend per new user. Cheap signups are useless if they never pay \u2014\
+    \ read with CAC per paying customer."
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+- metric_name: mkt_signups
+  verbose_name: Signups (paid-tracked)
+  metric_type: null
+  expression: SUM(signups)
+  description: Signups in countries with marketing spend data (US, DE, UA, PL).
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+- metric_name: paying_users
+  verbose_name: Paying users
+  metric_type: null
+  expression: SUM(paying_users)
+  description: Users from these signups who converted to paid.
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+- metric_name: spend
+  verbose_name: Spend, USD
+  metric_type: null
+  expression: SUM(spend_usd)
+  description: Marketing spend in USD.
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: country
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: spend_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: paying_users
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: clicks
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: impressions
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: signups
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: spend_usd
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NUMERIC
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: channel
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 268ed9ba-b717-441a-8759-490ce258cd2e

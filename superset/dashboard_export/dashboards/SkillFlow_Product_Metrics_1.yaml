@@ -1,0 +1,1459 @@
+dashboard_title: "SkillFlow \u2014 Product Metrics"
+description: null
+css: ".dashboard-markdown table th,\r\n.dashboard-markdown table td {\r\n    border-bottom:\
+  \ 1px solid #333;\r\n    padding: 4px 10px;\r\n    text-align: left;\r\n}"
+slug: null
+certified_by: ''
+certification_details: ''
+published: true
+uuid: da585890-82b2-4419-a545-2c07572cbf60
+position:
+  CHART--m9YEgxs2Y1eSWVnkS6eZ:
+    children: []
+    id: CHART--m9YEgxs2Y1eSWVnkS6eZ
+    meta:
+      chartId: 10
+      height: 57
+      sliceName: Where do we lose users?
+      uuid: 15b131a0-4d6d-4b6a-9f11-27590e8ffdfb
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-uf5h_1YB0w_rbfuOXlYcb
+    - ROW-cfnuv4Tow9E6-Ium7MZfE
+    type: CHART
+  CHART-0rltdl6rJJUbKnxnSTnMj:
+    children: []
+    id: CHART-0rltdl6rJJUbKnxnSTnMj
+    meta:
+      chartId: 9
+      height: 33
+      sliceName: Which channel is worth the money?
+      uuid: 570bc049-ca23-4f10-9f25-d59847c7a987
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-DRC7vxVzGHuNiTsQkcyhK
+    - ROW-7PO9aXFyHoU4Iyd4orFzK
+    type: CHART
+  CHART-5qf3HnfCiERFPjKwjlgAf:
+    children: []
+    id: CHART-5qf3HnfCiERFPjKwjlgAf
+    meta:
+      chartId: 16
+      height: 34
+      sliceName: How sticky is the product?
+      uuid: 5f0d113e-7573-4ee8-84e5-ea8fcf313a99
+      width: 5
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-XSr8mPNZ2gwWyr_RTa26A
+    - ROW-UbNdxeii-3TFjduX-NJ1D
+    type: CHART
+  CHART-8LfyrlBbO3ok0hvXFyPWF:
+    children: []
+    id: CHART-8LfyrlBbO3ok0hvXFyPWF
+    meta:
+      chartId: 22
+      height: 50
+      sliceName: How much does a user bring, by channel?
+      uuid: 2e0510a3-2e22-4513-ba7b-3c3c68813a20
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+    - ROW-7k9hAz8ewLgZxpZ8N38Cw
+    type: CHART
+  CHART-EqZ8h9OfppFpuS35vWYo0:
+    children: []
+    id: CHART-EqZ8h9OfppFpuS35vWYo0
+    meta:
+      chartId: 15
+      height: 50
+      sliceName: "Who is active every day \u2014 new or returning users?"
+      uuid: ba5ec7fc-c5ba-4f6f-ada6-8abd2fe17f6b
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-XSr8mPNZ2gwWyr_RTa26A
+    - ROW-jbw-rm4RH2kW5Ig-LjutF
+    type: CHART
+  CHART-FrpA4lGgMLuKFLDW6UWdU:
+    children: []
+    id: CHART-FrpA4lGgMLuKFLDW6UWdU
+    meta:
+      chartId: 12
+      height: 50
+      sliceName: How long until the first lesson?
+      uuid: bb19f967-32bb-4030-bcf7-edc6d2e8a7f0
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-uf5h_1YB0w_rbfuOXlYcb
+    - ROW--_iZrY6_WCbFOiO868Rtu
+    type: CHART
+  CHART-IBb9DeQmwC-ZkPtSgS9bI:
+    children: []
+    id: CHART-IBb9DeQmwC-ZkPtSgS9bI
+    meta:
+      chartId: 17
+      height: 50
+      sliceName: Is recurring revenue growing?
+      uuid: 4b9badb7-c8ed-4bec-b5e3-855a99fa045a
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+    - ROW-7k9hAz8ewLgZxpZ8N38Cw
+    type: CHART
+  CHART-SKI9A_VI0KWxOoHOalXWY:
+    children: []
+    id: CHART-SKI9A_VI0KWxOoHOalXWY
+    meta:
+      chartId: 24
+      height: 35
+      sliceName: Did the primary metric improve?
+      uuid: 8339285f-9d05-44a5-8b97-99c93dfb2c69
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-az-9qM3uA-lJNLTp0mAkK
+    - ROW-X6qR910l8bZgD4VGds4bs
+    type: CHART
+  CHART-WRvJ77du4Kb97hLpPy6z6:
+    children: []
+    id: CHART-WRvJ77du4Kb97hLpPy6z6
+    meta:
+      chartId: 11
+      height: 50
+      sliceName: Is it the traffic or the product?
+      uuid: 8752186c-7546-4c87-a623-7a2ba35ce623
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-uf5h_1YB0w_rbfuOXlYcb
+    - ROW--_iZrY6_WCbFOiO868Rtu
+    type: CHART
+  CHART-explore-1-1:
+    children: []
+    id: CHART-explore-1-1
+    meta:
+      chartId: 1
+      height: 50
+      sliceName: How many new users reach the aha-moment?
+      uuid: 2b4bad93-c91c-4ed8-b819-473ad95127cf
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    - ROW-tS8fJyMPZuF1jT1XauedT
+    type: CHART
+  CHART-explore-2-1:
+    children: []
+    id: CHART-explore-2-1
+    meta:
+      chartId: 2
+      height: 50
+      sliceName: How many users signed up?
+      uuid: ab274643-098d-43e5-a6e5-2e80a2a77ecb
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    - ROW-tS8fJyMPZuF1jT1XauedT
+    type: CHART
+  CHART-explore-3-1:
+    children: []
+    id: CHART-explore-3-1
+    meta:
+      chartId: 3
+      height: 50
+      sliceName: How fast do users get value?
+      uuid: 9e0f501c-9c59-4ef8-b45e-67003ba597fa
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    - ROW-tS8fJyMPZuF1jT1XauedT
+    type: CHART
+  CHART-explore-4-1:
+    children: []
+    id: CHART-explore-4-1
+    meta:
+      chartId: 4
+      height: 50
+      sliceName: Do users come back the next day?
+      uuid: a224ba80-7811-4e87-bf0e-3ae1bc503ec9
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    - ROW-Mi08gvyFfjSYEw2t739qk
+    type: CHART
+  CHART-explore-5-1:
+    children: []
+    id: CHART-explore-5-1
+    meta:
+      chartId: 5
+      height: 50
+      sliceName: Do trial users pay?
+      uuid: 89ed682d-11dd-4d55-99af-42eca2ca1ef9
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    - ROW-Mi08gvyFfjSYEw2t739qk
+    type: CHART
+  CHART-explore-6-1:
+    children: []
+    id: CHART-explore-6-1
+    meta:
+      chartId: 6
+      height: 50
+      sliceName: How much does a paying customer cost?
+      uuid: bbc36aa7-ef2b-4175-b277-3c01ca88fc46
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    - ROW-tS8fJyMPZuF1jT1XauedT
+    type: CHART
+  CHART-explore-7-1:
+    children: []
+    id: CHART-explore-7-1
+    meta:
+      chartId: 7
+      height: 50
+      sliceName: How much does a paying customer bring?
+      uuid: 051b9cf3-f419-432f-8fe5-76a70ddfb167
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    - ROW-Mi08gvyFfjSYEw2t739qk
+    type: CHART
+  CHART-gWELby7xkYE8YNALc-key:
+    children: []
+    id: CHART-gWELby7xkYE8YNALc-key
+    meta:
+      chartId: 23
+      height: 45
+      sliceName: What changed in group B?
+      uuid: 97aad28c-29bd-410b-8f1c-894aa2ee7ca3
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-az-9qM3uA-lJNLTp0mAkK
+    - ROW-lFsTrMX0RPbCY8KYfe05b
+    type: CHART
+  CHART-ggaf9DDR_ZMB_Qr_-Otqu:
+    children: []
+    id: CHART-ggaf9DDR_ZMB_Qr_-Otqu
+    meta:
+      chartId: 20
+      height: 50
+      sliceName: How many users ever pay?
+      uuid: d96baa7b-e170-4e1d-aa19-808add3b7275
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+    - ROW-7IXb8rOI_PaqPJy3o4-RR
+    type: CHART
+  CHART-i5Xeygxb-IHHDaRVhxGQg:
+    children: []
+    id: CHART-i5Xeygxb-IHHDaRVhxGQg
+    meta:
+      chartId: 13
+      height: 50
+      sliceName: Do users keep coming back?
+      uuid: 226e795b-9978-49ed-9f23-5907357dc5f2
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-XSr8mPNZ2gwWyr_RTa26A
+    - ROW-jbw-rm4RH2kW5Ig-LjutF
+    type: CHART
+  CHART-ivb1_Uen0vCFO9ZvOXIOI:
+    children: []
+    id: CHART-ivb1_Uen0vCFO9ZvOXIOI
+    meta:
+      chartId: 25
+      height: 35
+      sliceName: How many guardrails got worse?
+      uuid: b42ca7e4-01bc-4848-895c-c805bbf2aac2
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-az-9qM3uA-lJNLTp0mAkK
+    - ROW-X6qR910l8bZgD4VGds4bs
+    type: CHART
+  CHART-jqpAXZpoWUAtNm-gVZQFh:
+    children: []
+    id: CHART-jqpAXZpoWUAtNm-gVZQFh
+    meta:
+      chartId: 8
+      height: 79
+      sliceName: Which channels bring new users?
+      uuid: fa33e6b2-08b1-4fc4-b99b-73eebe2c4942
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-DRC7vxVzGHuNiTsQkcyhK
+    - ROW-yX-j1N7dvWoSvWREjEeE1
+    type: CHART
+  CHART-oA1w4RtEKUGMNlRZkO_rI:
+    children: []
+    id: CHART-oA1w4RtEKUGMNlRZkO_rI
+    meta:
+      chartId: 21
+      height: 50
+      sliceName: Do payers ask for money back?
+      uuid: 0d97bd44-2e4e-4a30-9cb6-26b751c279ea
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+    - ROW-7IXb8rOI_PaqPJy3o4-RR
+    type: CHART
+  CHART-qy1s9dsqEBhYWHwmfHzGo:
+    children: []
+    id: CHART-qy1s9dsqEBhYWHwmfHzGo
+    meta:
+      chartId: 19
+      height: 50
+      sliceName: How much does an average user bring?
+      uuid: 628926cf-e9de-4adf-947c-0188ddfbaa2d
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+    - ROW-7IXb8rOI_PaqPJy3o4-RR
+    type: CHART
+  CHART-xUL2gHrucaoZjTg00llYc:
+    children: []
+    id: CHART-xUL2gHrucaoZjTg00llYc
+    meta:
+      chartId: 14
+      height: 34
+      sliceName: Are newer cohorts retained better?
+      uuid: db03950b-b9f8-44fe-b58c-4594b42e7f07
+      width: 7
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-XSr8mPNZ2gwWyr_RTa26A
+    - ROW-UbNdxeii-3TFjduX-NJ1D
+    type: CHART
+  CHART-yU_mQBvQj5mwBTobTbImt:
+    children: []
+    id: CHART-yU_mQBvQj5mwBTobTbImt
+    meta:
+      chartId: 18
+      height: 50
+      sliceName: Which plans drive MRR?
+      uuid: 2cfec145-e049-4230-b265-11e8b76f3289
+      width: 4
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+    - ROW-7k9hAz8ewLgZxpZ8N38Cw
+    type: CHART
+  DASHBOARD_VERSION_KEY: v2
+  GRID_ID:
+    children:
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: "SkillFlow \u2014 Product Metrics"
+    type: HEADER
+  MARKDOWN-9B21O-lWoTAGI-6V3EHTp:
+    children: []
+    id: MARKDOWN-9B21O-lWoTAGI-6V3EHTp
+    meta:
+      code: "### Where do users come from and what do they cost?\r\n\r\n**Which channels\
+        \ bring new users?** \u2014 weekly signups by acquisition channel. Watch for\
+        \ sudden drops in a channel (paused ads, broken tracking). *Last partial week\
+        \ (Jun 29 \u2013 Jul 1) is excluded.*\r\n\r\n**Which channel is worth the\
+        \ money?** \u2014 sorted from cheapest to most expensive paying customer.\
+        \ \U0001F534 above $100 = customer does not pay back within a year (~$9/month)\
+        \ \xB7 \U0001F7E2 $100 or less.\r\n\r\n*Organic has $0 spend, so its CAC is\
+        \ 0. Spend data exists only for US, DE, UA, PL.*\r\n"
+      height: 24
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-DRC7vxVzGHuNiTsQkcyhK
+    - ROW-OGz_cwSCyb88dlWA7qScU
+    type: MARKDOWN
+  MARKDOWN-BRdYpwkNhpre3UPfhLDFP:
+    children: []
+    id: MARKDOWN-BRdYpwkNhpre3UPfhLDFP
+    meta:
+      code: "\n## SkillFlow \u2014 product health at a glance\n**Period:** signups\
+        \ Jun 1 \u2013 Jul 1 2026, activity until Jul 22 2026 \xB7 test accounts excluded\n\
+        \n**How to read:** each card answers one business question. \U0001F7E2 green\
+        \ = at or above benchmark \xB7 \U0001F534 red = below benchmark \xB7 no colour\
+        \ = no benchmark. Details are on the next tabs.\n\n**Key takeaway:** users\
+        \ rarely start a trial after the paywall (16%) and only 7.5% return on day\
+        \ 1 \u2014 the first-session experience is the main problem.\n\n**Filters**\
+        \ (left panel): Channel and Experiment group apply to user-level charts only;\
+        \ cohort, MRR, retention and experiment summaries are pre-aggregated and show\
+        \ totals."
+      height: 25
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    - ROW-NGsNnrplN_e0W4Jldhh1e
+    type: MARKDOWN
+  MARKDOWN-Mz7udBP7l_IYSZIzNbfX8:
+    children: []
+    id: MARKDOWN-Mz7udBP7l_IYSZIzNbfX8
+    meta:
+      code: "### Should we roll out the new onboarding (group B)?\r\n\r\n**Experiment:**\
+        \ EXP_2026_06_ONBOARDING_PLAN \xB7 A = current onboarding, B = new \xB7 ~20k\
+        \ users per group \xB7 June 2026.\r\n\r\n**How to read:** \U0001F7E2 B significantly\
+        \ better \xB7 \U0001F534 B significantly worse \xB7 \u26AA no significant\
+        \ difference. *CI* = 95% confidence interval of the difference in percentage\
+        \ points: if it does not cross 0, the effect is real.\r\n\r\n**Decision: \u274C\
+        \ do not roll out as is.** B increases trial starts (+7%) and payments (+10%),\
+        \ but all three guardrails got significantly worse: app errors +29%, support\
+        \ tickets +16%, onboarding completion \u22121.1%. Errors grew on **all** screens\
+        \ \u2192 likely a technical bug in the B build. Fix the bug, review onboarding/account\
+        \ tickets, then re-run the test."
+      height: 26
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-az-9qM3uA-lJNLTp0mAkK
+    - ROW-7VDrw2F5hR06fMTM7YhxV
+    type: MARKDOWN
+  MARKDOWN-Nf0jn-NKkMsG96cczailZ:
+    children: []
+    id: MARKDOWN-Nf0jn-NKkMsG96cczailZ
+    meta:
+      code: "### Does the product become a habit?\r\n\r\n**Do users keep coming back?**\
+        \ \u2014 % of users active on day N after signup. Drop to 7.5% on day 1, then\
+        \ a flat **~3% shelf**: a small loyal core exists.\r\n\r\n**Are newer cohorts\
+        \ retained better?** \u2014 all June cohorts look the same: no product improvement\
+        \ during the month. \U0001F534 D1 below 25% benchmark.\r\n\r\n**Who is active\
+        \ every day?** \u2014 most daily activity comes from **new signups**, not\
+        \ returning users: DAU is driven by marketing, not by habit.\r\n\r\n**How\
+        \ sticky is the product?** \u2014 4.8%: an average user is active less than\
+        \ 1.5 days a month.\r\n\r\n*Data limits: activity is tracked up to day 21\
+        \ after signup; no signups after Jul 1, so July is excluded from DAU and stickiness.*\
+        \ *Cohort of Jun 29 covers only 3 days of signups.*"
+      height: 32
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-XSr8mPNZ2gwWyr_RTa26A
+    - ROW-gkpSf6Roj9tteATE-lmA-
+    type: MARKDOWN
+  MARKDOWN-TohD8z72b7Q30hFF1jMxx:
+    children: []
+    id: MARKDOWN-TohD8z72b7Q30hFF1jMxx
+    meta:
+      code: "## Glossary \u2014 what every metric means\r\n\r\nAll metrics: test accounts\
+        \ excluded \xB7 amounts in USD (UAH/EUR converted with daily NBU rates) \xB7\
+        \ signups Jun 1 \u2013 Jul 1 2026.\r\n\r\n### Acquisition \u2014 do people\
+        \ come, and at what cost?\r\n| Metric | Formula | Answers the question | Benchmark\
+        \ |\r\n|---|---|---|---|\r\n| **Signups** | count of new users | How many\
+        \ people did we attract? Volume alone is a vanity metric \u2014 read with\
+        \ CAC and activation | \u2014 |\r\n| **CAC per signup** | marketing spend\
+        \ \xF7 signups | How much does one new user cost? | \u2014 |\r\n| **CAC per\
+        \ paying customer** | marketing spend \xF7 paying customers | How much does\
+        \ one paying customer cost? Budget decisions by channel | \u2264 1 year of\
+        \ revenue (~$100); LTV : CAC \u2265 3 : 1 |\r\n\r\n### Activation \u2014 did\
+        \ the user get value?\r\n| Metric | Formula | Answers the question | Benchmark\
+        \ |\r\n|---|---|---|---|\r\n| **Activation Rate** | users with 1st completed\
+        \ lesson \xF7 signups | Did the user reach the aha-moment? Strongest early\
+        \ (leading) signal of retention | 20\u201340% (edtech) |\r\n| **Time to First\
+        \ Value** | median hours from signup to 1st completed lesson | How fast do\
+        \ users see value? Longer = more drop-off before value | < 48 h |\r\n| **Funnel**\
+        \ | users on each step, strict (all previous steps reached); % = from previous\
+        \ step | Where exactly do we lose users? Fix the biggest leak first | \u2014\
+        \ |\r\n\r\n### Engagement & Retention \u2014 does it become a habit?\r\n|\
+        \ Metric | Formula | Answers the question | Benchmark |\r\n|---|---|---|---|\r\
+        \n| **DAU / MAU** | unique active users per day / per month | How big is the\
+        \ living audience? | \u2014 |\r\n| **Stickiness** | average DAU \xF7 MAU |\
+        \ How many days a month is the product used? | 10\u201320% typical, 20%+ good\
+        \ |\r\n| **D1 / D7 / D14 retention** | active on day N after signup \xF7 users\
+        \ who reached day N | Do users come back? D1 = first experience, D7 = habit\
+        \ forming | D1 25\u201340% (edtech) |\r\n| **Retention curve** | retention\
+        \ by day N | A flat \"shelf\" = loyal core exists (sign of product-market\
+        \ fit) | flattening curve |\r\n\r\n### Conversion & Revenue \u2014 do users\
+        \ pay, and is it enough?\r\n| Metric | Formula | Answers the question | Benchmark\
+        \ |\r\n|---|---|---|---|\r\n| **Trial \u2192 Paid** | converted \xF7 finished\
+        \ trials (active trials excluded) | Do users see enough value in 7 days to\
+        \ pay? | 40\u201360% (card-required trial) |\r\n| **MRR** | sum of monthly\
+        \ value of active subscriptions (annual \xF7 12, quarterly \xF7 3) | Is recurring\
+        \ revenue growing? Main health metric of a subscription business | growing\
+        \ |\r\n| **ARPU** | net revenue \xF7 all users | How much does an average\
+        \ user bring? Compare with CAC per signup | > CAC per signup |\r\n| **ARPPU**\
+        \ | net revenue \xF7 paying users | How much does a payer bring? Pricing decisions\
+        \ | \u2014 |\r\n| **Paying share** | paying users \xF7 all users (= ARPU \xF7\
+        \ ARPPU) | How many users ever pay? | \u2014 |\r\n| **Refund rate** | refunds\
+        \ \xF7 successful payments | Does the paywall promise more than the product\
+        \ gives? | < 5% |\r\n\r\n### Experiment \u2014 did the change really work?\r\
+        \n| Term | Meaning |\r\n|---|---|\r\n| **Primary metric** | the one metric\
+        \ the change was made for; chosen *before* the test |\r\n| **Secondary metrics**\
+        \ | supporting metrics that explain the result |\r\n| **Guardrails** | metrics\
+        \ that must **not** get worse (errors, support tickets, onboarding completion)\
+        \ |\r\n| **Lift** | relative difference (B \u2212 A) \xF7 A |\r\n| **95% CI**\
+        \ | range of the true difference; if it does not cross 0 \u2014 the effect\
+        \ is real |\r\n| **Rollout rule** | primary significantly better **and** no\
+        \ guardrail significantly worse |\r\n\r\n### Common traps\r\n- **Wrong denominator**\
+        \ \u2014 e.g. counting active trials as failures, or blended CAC including\
+        \ free organic users.\r\n- **Average instead of median** for time and money\
+        \ \u2014 a few outliers distort the average.\r\n- **Average of percentages**\
+        \ \u2014 weight by cohort size instead.\r\n- **Incomplete period** \u2014\
+        \ partial weeks/months look like drops.\r\n- **Correlation \u2260 causation**\
+        \ \u2014 only an A/B test proves a change caused the effect."
+      height: 148
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-btkjCMvvCXdN_QwVxxbzh
+    - ROW-aVf2C1aiErhZd3qOIwWRW
+    type: MARKDOWN
+  MARKDOWN-lvEgO3Oz2LDdV8cj5NTN_:
+    children: []
+    id: MARKDOWN-lvEgO3Oz2LDdV8cj5NTN_
+    meta:
+      code: "### Does the business make money \u2014 and does it pay back?\r\n\r\n\
+        **Is recurring revenue growing?** \u2014 MRR peaked at **$17.4k on Jul 8**\
+        \ and is now declining: signups stopped on Jul 1, so fewer new subscriptions\
+        \ arrive than lapse.\r\n\r\n**Which plans drive MRR?** \u2014 monthly / quarterly\
+        \ / annual contribution (annual counted as price \xF7 12).\r\n\r\n**How much\
+        \ does a user bring?** \u2014 ARPU **$1.5** = ARPPU $30 \xD7 only **5%** paying\
+        \ users. Money problem = too few payers, not the price.\r\n\r\n**Unit economics**\
+        \ \u2014 ARPU is ~$1.5 in every channel, while CAC per signup is **$16\u2013\
+        29** (see Acquisition): each paid signup returns 10\u201320\xD7 less than\
+        \ it costs.\r\n\r\n*MRR: each payment covers 30/90/365 days; a refund ends\
+        \ coverage. Data ends Jul 31, test accounts excluded.*"
+      height: 33
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+    - ROW-6-zUEXhX7h4s-_dHmoNEK
+    type: MARKDOWN
+  MARKDOWN-vDrmUipFAuvJ-FEiK9sob:
+    children: []
+    id: MARKDOWN-vDrmUipFAuvJ-FEiK9sob
+    meta:
+      code: "### Where do we lose users \u2014 and why?\r\n\r\n**Where do we lose\
+        \ users?** \u2014 strict funnel: a user counts on a step only if all previous\
+        \ steps were reached. % under each step = conversion from the previous step.\
+        \ \U0001F534 Biggest leak: **Paywall \u2192 Trial (16%)** \u2014 26k users\
+        \ leave here.\r\n\r\n**Is it the traffic or the product?** \u2014 activation\
+        \ is 13\u201314% in every channel, so the problem is the **product experience**,\
+        \ not traffic quality.\r\n\r\n**How long until the first lesson?** \u2014\
+        \ long tail: some users need 2\u20133 weeks. That's why Time to First Value\
+        \ uses the **median**, not the average."
+      height: 25
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-uf5h_1YB0w_rbfuOXlYcb
+    - ROW-wd94oM3HingRcfd-Lmp7T
+    type: MARKDOWN
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  ROW--_iZrY6_WCbFOiO868Rtu:
+    children:
+    - CHART-WRvJ77du4Kb97hLpPy6z6
+    - CHART-FrpA4lGgMLuKFLDW6UWdU
+    id: ROW--_iZrY6_WCbFOiO868Rtu
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-uf5h_1YB0w_rbfuOXlYcb
+    type: ROW
+  ROW-6-zUEXhX7h4s-_dHmoNEK:
+    children:
+    - MARKDOWN-lvEgO3Oz2LDdV8cj5NTN_
+    id: ROW-6-zUEXhX7h4s-_dHmoNEK
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+    type: ROW
+  ROW-7IXb8rOI_PaqPJy3o4-RR:
+    children:
+    - CHART-oA1w4RtEKUGMNlRZkO_rI
+    - CHART-ggaf9DDR_ZMB_Qr_-Otqu
+    - CHART-qy1s9dsqEBhYWHwmfHzGo
+    id: ROW-7IXb8rOI_PaqPJy3o4-RR
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+    type: ROW
+  ROW-7PO9aXFyHoU4Iyd4orFzK:
+    children:
+    - CHART-0rltdl6rJJUbKnxnSTnMj
+    id: ROW-7PO9aXFyHoU4Iyd4orFzK
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-DRC7vxVzGHuNiTsQkcyhK
+    type: ROW
+  ROW-7VDrw2F5hR06fMTM7YhxV:
+    children:
+    - MARKDOWN-Mz7udBP7l_IYSZIzNbfX8
+    id: ROW-7VDrw2F5hR06fMTM7YhxV
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-az-9qM3uA-lJNLTp0mAkK
+    type: ROW
+  ROW-7k9hAz8ewLgZxpZ8N38Cw:
+    children:
+    - CHART-IBb9DeQmwC-ZkPtSgS9bI
+    - CHART-yU_mQBvQj5mwBTobTbImt
+    - CHART-8LfyrlBbO3ok0hvXFyPWF
+    id: ROW-7k9hAz8ewLgZxpZ8N38Cw
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+    type: ROW
+  ROW-Mi08gvyFfjSYEw2t739qk:
+    children:
+    - CHART-explore-4-1
+    - CHART-explore-5-1
+    - CHART-explore-7-1
+    id: ROW-Mi08gvyFfjSYEw2t739qk
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    type: ROW
+  ROW-NGsNnrplN_e0W4Jldhh1e:
+    children:
+    - MARKDOWN-BRdYpwkNhpre3UPfhLDFP
+    id: ROW-NGsNnrplN_e0W4Jldhh1e
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    type: ROW
+  ROW-OGz_cwSCyb88dlWA7qScU:
+    children:
+    - MARKDOWN-9B21O-lWoTAGI-6V3EHTp
+    id: ROW-OGz_cwSCyb88dlWA7qScU
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-DRC7vxVzGHuNiTsQkcyhK
+    type: ROW
+  ROW-UbNdxeii-3TFjduX-NJ1D:
+    children:
+    - CHART-xUL2gHrucaoZjTg00llYc
+    - CHART-5qf3HnfCiERFPjKwjlgAf
+    id: ROW-UbNdxeii-3TFjduX-NJ1D
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-XSr8mPNZ2gwWyr_RTa26A
+    type: ROW
+  ROW-X6qR910l8bZgD4VGds4bs:
+    children:
+    - CHART-SKI9A_VI0KWxOoHOalXWY
+    - CHART-ivb1_Uen0vCFO9ZvOXIOI
+    id: ROW-X6qR910l8bZgD4VGds4bs
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-az-9qM3uA-lJNLTp0mAkK
+    type: ROW
+  ROW-aVf2C1aiErhZd3qOIwWRW:
+    children:
+    - MARKDOWN-TohD8z72b7Q30hFF1jMxx
+    id: ROW-aVf2C1aiErhZd3qOIwWRW
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-btkjCMvvCXdN_QwVxxbzh
+    type: ROW
+  ROW-cfnuv4Tow9E6-Ium7MZfE:
+    children:
+    - CHART--m9YEgxs2Y1eSWVnkS6eZ
+    id: ROW-cfnuv4Tow9E6-Ium7MZfE
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-uf5h_1YB0w_rbfuOXlYcb
+    type: ROW
+  ROW-gkpSf6Roj9tteATE-lmA-:
+    children:
+    - MARKDOWN-Nf0jn-NKkMsG96cczailZ
+    id: ROW-gkpSf6Roj9tteATE-lmA-
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-XSr8mPNZ2gwWyr_RTa26A
+    type: ROW
+  ROW-jbw-rm4RH2kW5Ig-LjutF:
+    children:
+    - CHART-i5Xeygxb-IHHDaRVhxGQg
+    - CHART-EqZ8h9OfppFpuS35vWYo0
+    id: ROW-jbw-rm4RH2kW5Ig-LjutF
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-XSr8mPNZ2gwWyr_RTa26A
+    type: ROW
+  ROW-lFsTrMX0RPbCY8KYfe05b:
+    children:
+    - CHART-gWELby7xkYE8YNALc-key
+    id: ROW-lFsTrMX0RPbCY8KYfe05b
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-az-9qM3uA-lJNLTp0mAkK
+    type: ROW
+  ROW-tS8fJyMPZuF1jT1XauedT:
+    children:
+    - CHART-explore-2-1
+    - CHART-explore-6-1
+    - CHART-explore-1-1
+    - CHART-explore-3-1
+    id: ROW-tS8fJyMPZuF1jT1XauedT
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    type: ROW
+  ROW-wd94oM3HingRcfd-Lmp7T:
+    children:
+    - MARKDOWN-vDrmUipFAuvJ-FEiK9sob
+    id: ROW-wd94oM3HingRcfd-Lmp7T
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-uf5h_1YB0w_rbfuOXlYcb
+    type: ROW
+  ROW-yX-j1N7dvWoSvWREjEeE1:
+    children:
+    - CHART-jqpAXZpoWUAtNm-gVZQFh
+    id: ROW-yX-j1N7dvWoSvWREjEeE1
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    - TAB-DRC7vxVzGHuNiTsQkcyhK
+    type: ROW
+  TAB-DRC7vxVzGHuNiTsQkcyhK:
+    children:
+    - ROW-OGz_cwSCyb88dlWA7qScU
+    - ROW-7PO9aXFyHoU4Iyd4orFzK
+    - ROW-yX-j1N7dvWoSvWREjEeE1
+    id: TAB-DRC7vxVzGHuNiTsQkcyhK
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Acquisition
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    type: TAB
+  TAB-TGygUZXnj9nIjEzP3AzZ0:
+    children:
+    - ROW-6-zUEXhX7h4s-_dHmoNEK
+    - ROW-7k9hAz8ewLgZxpZ8N38Cw
+    - ROW-7IXb8rOI_PaqPJy3o4-RR
+    id: TAB-TGygUZXnj9nIjEzP3AzZ0
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Revenue
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    type: TAB
+  TAB-XSr8mPNZ2gwWyr_RTa26A:
+    children:
+    - ROW-gkpSf6Roj9tteATE-lmA-
+    - ROW-jbw-rm4RH2kW5Ig-LjutF
+    - ROW-UbNdxeii-3TFjduX-NJ1D
+    id: TAB-XSr8mPNZ2gwWyr_RTa26A
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Engagement & Retention
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    type: TAB
+  TAB-az-9qM3uA-lJNLTp0mAkK:
+    children:
+    - ROW-7VDrw2F5hR06fMTM7YhxV
+    - ROW-X6qR910l8bZgD4VGds4bs
+    - ROW-lFsTrMX0RPbCY8KYfe05b
+    id: TAB-az-9qM3uA-lJNLTp0mAkK
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Experiment
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    type: TAB
+  TAB-btkjCMvvCXdN_QwVxxbzh:
+    children:
+    - ROW-aVf2C1aiErhZd3qOIwWRW
+    id: TAB-btkjCMvvCXdN_QwVxxbzh
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Glossary
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    type: TAB
+  TAB-f8RfZM9MQc5tID-qQ_735:
+    children:
+    - ROW-NGsNnrplN_e0W4Jldhh1e
+    - ROW-tS8fJyMPZuF1jT1XauedT
+    - ROW-Mi08gvyFfjSYEw2t739qk
+    id: TAB-f8RfZM9MQc5tID-qQ_735
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Overview
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    type: TAB
+  TAB-uf5h_1YB0w_rbfuOXlYcb:
+    children:
+    - ROW-wd94oM3HingRcfd-Lmp7T
+    - ROW-cfnuv4Tow9E6-Ium7MZfE
+    - ROW--_iZrY6_WCbFOiO868Rtu
+    id: TAB-uf5h_1YB0w_rbfuOXlYcb
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Activation & Funnel
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-10vK-7ZScPLQedBi_IC_g
+    type: TAB
+  TABS-10vK-7ZScPLQedBi_IC_g:
+    children:
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    - TAB-DRC7vxVzGHuNiTsQkcyhK
+    - TAB-uf5h_1YB0w_rbfuOXlYcb
+    - TAB-XSr8mPNZ2gwWyr_RTa26A
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+    - TAB-az-9qM3uA-lJNLTp0mAkK
+    - TAB-btkjCMvvCXdN_QwVxxbzh
+    id: TABS-10vK-7ZScPLQedBi_IC_g
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: TABS
+metadata:
+  label_colors:
+    Organic: '#1f77b4'
+    Paid Social: '#9467bd'
+    Google Ads: '#17becf'
+    Referral: '#ff7f0e'
+    Email: '#8c564b'
+    1. Signup: '#1f4e79'
+    2. Onboarding started: '#2a6496'
+    3. Onboarding completed: '#3579b1'
+    4. Paywall viewed: '#4a90c9'
+    5. Trial activated: '#d62728'
+    6. Lesson started: '#6aa7d8'
+    7. Lesson completed: '#8fbde3'
+  chart_configuration:
+    '8':
+      id: 8
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
+        - 24
+        - 25
+    '9':
+      id: 9
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
+        - 24
+        - 25
+    '10':
+      id: 10
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
+        - 24
+        - 25
+    '11':
+      id: 11
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
+        - 24
+        - 25
+    '13':
+      id: 13
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
+        - 24
+        - 25
+    '14':
+      id: 14
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
+        - 24
+        - 25
+    '15':
+      id: 15
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
+        - 24
+        - 25
+    '18':
+      id: 18
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
+        - 24
+        - 25
+    '22':
+      id: 22
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 23
+        - 24
+        - 25
+    '23':
+      id: 23
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 24
+        - 25
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+  native_filter_configuration:
+  - cascadeParentIds: []
+    controlValues:
+      creatable: true
+      defaultToFirstItem: false
+      enableEmptyFilter: false
+      inverseSelection: false
+      multiSelect: true
+      searchAllOptions: false
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    description: ''
+    filterType: filter_select
+    id: NATIVE_FILTER-NOg3L_39xTXztx34TOF9l
+    name: Channel
+    scope:
+      excluded:
+      - 9
+      - 17
+      - 4
+      - 5
+      - 6
+      - 7
+      - 21
+      - 18
+      rootPath:
+      - TAB-uf5h_1YB0w_rbfuOXlYcb
+      - TAB-f8RfZM9MQc5tID-qQ_735
+      - TAB-DRC7vxVzGHuNiTsQkcyhK
+      - TAB-TGygUZXnj9nIjEzP3AzZ0
+    sortMetric: null
+    targets:
+    - column:
+        name: traffic_source
+      datasetUuid: b02cbc24-7438-4f9c-8683-49c28ffad26b
+    type: NATIVE_FILTER
+    chartsInScope:
+    - 1
+    - 2
+    - 3
+    - 8
+    - 12
+    - 10
+    - 11
+    - 19
+    - 20
+    - 22
+    tabsInScope:
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    - TAB-DRC7vxVzGHuNiTsQkcyhK
+    - TAB-uf5h_1YB0w_rbfuOXlYcb
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+  - cascadeParentIds: []
+    controlValues:
+      creatable: true
+      defaultToFirstItem: false
+      enableEmptyFilter: false
+      inverseSelection: false
+      multiSelect: true
+      searchAllOptions: false
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    description: ''
+    filterType: filter_select
+    id: NATIVE_FILTER-Ih8cRpt9aTFq-nZ1W9Mem
+    name: Experiment group
+    scope:
+      excluded:
+      - 9
+      - 17
+      - 4
+      - 5
+      - 6
+      - 7
+      - 21
+      - 18
+      rootPath:
+      - TAB-uf5h_1YB0w_rbfuOXlYcb
+      - TAB-f8RfZM9MQc5tID-qQ_735
+      - TAB-DRC7vxVzGHuNiTsQkcyhK
+      - TAB-TGygUZXnj9nIjEzP3AzZ0
+    sortMetric: null
+    targets:
+    - column:
+        name: experiment_group
+      datasetUuid: b02cbc24-7438-4f9c-8683-49c28ffad26b
+    type: NATIVE_FILTER
+    chartsInScope:
+    - 1
+    - 2
+    - 3
+    - 8
+    - 12
+    - 10
+    - 11
+    - 19
+    - 20
+    - 22
+    tabsInScope:
+    - TAB-f8RfZM9MQc5tID-qQ_735
+    - TAB-DRC7vxVzGHuNiTsQkcyhK
+    - TAB-uf5h_1YB0w_rbfuOXlYcb
+    - TAB-TGygUZXnj9nIjEzP3AzZ0
+  chart_customization_config: []
+  color_scheme: ''
+  refresh_frequency: 0
+  expanded_slices: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: true
+  default_filters: '{}'
+  show_chart_timestamps: false
+  color_scheme_domain: []
+  shared_label_colors: []
+  map_label_colors:
+    arpu: '#1FA8C9'
+    monthly: '#1f77b4'
+    annual: '#aec7e8'
+    quarterly: '#ff7f0e'
+    activation_rate: '#1FA8C9'
+    hours_to_first_value: '#1FA8C9'
+    Retention, %: '#1FA8C9'
+    New users: '#1FA8C9'
+    Returning users: '#454E7C'
+theme_uuid: null
+version: 1.0.0
