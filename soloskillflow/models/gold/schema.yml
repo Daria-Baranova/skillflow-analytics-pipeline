@@ -94,3 +94,9 @@ models:
               arguments:
                 min_value: 0
                 max_value: 100
+  - name: fct_mrr_daily
+    description: "Daily MRR by plan. Each successful payment covers 30/90/365 days (monthly/quarterly/annual); a refund ends coverage. Annual = price / 12, quarterly = price / 3. Test accounts excluded."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [mrr_date, plan]
