@@ -100,3 +100,8 @@ models:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns: [mrr_date, plan]
+  - name: fct_user_revenue
+    description: "One row per user with lifetime net revenue in USD (refunds subtracted). Base for ARPU / ARPPU and unit economics by channel."
+    columns:
+      - name: user_id
+        data_tests: [unique, not_null]
