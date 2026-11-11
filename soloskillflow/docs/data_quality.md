@@ -46,7 +46,7 @@ Profiling of `bronze` tables and how each issue is handled in `silver` (dbt stag
 | Duplicate copies with `event_ts` shifted −3h (timezone bug) | 121 | later copy kept (verified against signup time) |
 | NULL `user_id` | 1 575 | recovered from `session_id` (`S<user_id>-<date>`) |
 | `event_name`, `platform` in mixed case | ~45 000 | `lower(trim())` |
-| Lesson completed before signup event (negative Time to First Value) | 66 users | `hours_to_first_value` set to NULL in `fct_funnel`; guarded by `accepted_range` test |
+| Lesson completed before signup event — offsets are whole days (−1…−9 days), not a timezone shift | 66 users | flagged `has_invalid_ttfv`; `hours_to_first_value` = NULL; monitored by a `warn` test on raw timestamps |
 
 ## experiments (S3)
 | Issue | Rows | Fix in `stg_experiments` |

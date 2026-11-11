@@ -35,6 +35,8 @@ final AS (
         , f.lesson_started_at
         , f.lesson_completed_at
         , f.lesson_completed_at IS NOT NULL AS is_activated
+        -- биті дані: урок завершено раніше за реєстрацію → TTFV невідомий
+        , coalesce(f.lesson_completed_at < f.signup_at, false) AS has_invalid_ttfv
         , CASE
               WHEN f.lesson_completed_at >= f.signup_at
               THEN round(extract(EPOCH FROM f.lesson_completed_at - f.signup_at) / 3600, 1)

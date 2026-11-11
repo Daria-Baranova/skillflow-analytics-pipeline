@@ -41,15 +41,19 @@ models:
                 min_value: 0
 
   - name: fct_funnel
-    description: 	"One row per user with first timestamp of each of 7 funnel steps. Activation = first completed lesson."
+    description: "One row per user with first timestamp of each of 7 funnel steps. Activation = first completed lesson. has_invalid_ttfv marks users whose lesson events are dated before signup."
+    data_tests:
+      # тест на СИРІ дані: скільки уроків завершено раніше за реєстрацію
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "lesson_completed_at IS NULL OR lesson_completed_at >= signup_at"
+          config:
+            severity: warn
     columns:
       - name: user_id
         data_tests: [unique, not_null]
-      - name: hours_to_first_value
-        data_tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
+      - name: has_invalid_ttfv
+        data_tests: [not_null]
 
   - name: fct_marketing
     description: "Daily marketing spend by channel and country joined with signups and paying users. Base for CAC."
