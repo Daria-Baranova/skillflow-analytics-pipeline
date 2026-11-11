@@ -37,7 +37,7 @@ final AS (
                                         END, 2)         AS monthly_values_usd
         , COALESCE(p.net_revenue_usd, 0)                AS net_revenue_usd
         , COALESCE(p.has_refund, false)                 AS has_refund
-        , u.is_test_account
+        , coalesce(u.is_test_account, false) AS is_test_account
     FROM subscriptions AS s 
     LEFT JOIN payments AS p ON p.subscription_id = s.subscription_id
     LEFT JOIN users    AS u ON u.user_id = s.user_id

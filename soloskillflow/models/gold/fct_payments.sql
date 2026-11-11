@@ -28,7 +28,7 @@ converted AS (
             , 2) AS amount_usd
         , p.status
         , p.is_refund
-        , u.is_test_account
+        , coalesce(u.is_test_account, false) AS is_test_account
     FROM payments AS p 
     LEFT JOIN rates AS usd 
         ON usd.rate_date = p.paid_date AND usd.currency_code = 'USD'

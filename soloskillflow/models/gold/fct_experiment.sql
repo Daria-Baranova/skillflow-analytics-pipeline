@@ -1,6 +1,6 @@
 WITH funnel AS (
     SELECT * FROM {{ ref('fct_funnel') }}
-    WHERE NOT is_test_account
+    WHERE is_test_account IS NOT TRUE
 ),
 
 paid AS (

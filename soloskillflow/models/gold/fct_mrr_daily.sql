@@ -40,7 +40,7 @@ coverage AS (
     LEFT JOIN refunds AS r 
         ON r.subscription_id = p.subscription_id
     WHERE NOT p.is_refund
-      AND NOT p.is_test_account
+      AND p.is_test_account IS NOT TRUE
 ),
 
 days AS (

@@ -31,7 +31,7 @@ cleaned AS (
     , trim(traffic_source)  AS traffic_source
     , learning_goal
     , age_band
-    , is_test_account = 1 AS is_test_account
+    , coalesce(is_test_account = 1, false) AS is_test_account
 FROM deduplicate
 WHERE rn = 1
 )

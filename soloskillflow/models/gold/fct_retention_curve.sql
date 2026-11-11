@@ -3,7 +3,7 @@ WITH users AS (
         user_id
         , signup_date 
     FROM {{ ref('dim_users') }}
-    WHERE NOT is_test_account
+    WHERE is_test_account IS NOT TRUE
 ),
 
 activity AS (
@@ -11,7 +11,7 @@ activity AS (
         DISTINCT user_id
         , days_since_signup
     FROM {{ ref('fct_user_activity') }}
-    WHERE NOT is_test_account
+    WHERE is_test_account IS NOT TRUE
 ),
 
 data_end AS (

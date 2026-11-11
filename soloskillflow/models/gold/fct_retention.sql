@@ -1,6 +1,6 @@
 WITH users AS (
     SELECT * FROM {{ ref('dim_users') }}
-    WHERE NOT is_test_account
+    WHERE is_test_account IS NOT TRUE
 ),
 
 activity AS (
