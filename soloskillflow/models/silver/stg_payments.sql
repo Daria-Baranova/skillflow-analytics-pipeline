@@ -21,7 +21,7 @@ cleaned AS (
             regexp_replace(amount_raw, '[^0-9,.-]', '', 'g'), 
             ',', '.'
         )::NUMERIC(12, 2) AS amount
-        , STATUS
+        , lower(trim(status)) AS status
         , is_refund = 1 AS is_refund
     FROM deduplicated
     WHERE rn = 1

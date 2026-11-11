@@ -39,6 +39,11 @@ models:
               arguments:
                 to: ref('stg_subscriptions')
                 field: subscription_id
+      - name: status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['succeeded', 'refunded']
 
   - name: stg_subscriptions
     columns: 

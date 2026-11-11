@@ -36,6 +36,8 @@ converted AS (
         ON eur.rate_date = p.paid_date AND eur.currency_code = 'EUR'
     LEFT JOIN users AS u
         ON u.user_id = p.user_id
+        -- у виручку йдуть лише завершені операції: оплата або повернення
+    WHERE p.status IN ('succeeded', 'refunded')
 )
 
 SELECT *
