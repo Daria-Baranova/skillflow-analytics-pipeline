@@ -85,11 +85,22 @@ g AS (
     GROUP BY 1, 2, 3
 ),
 
+-- z залежить від типу метрики: primary без поправки, решта — з Бонферроні
+z_values AS (
+    SELECT
+          *
+        , CASE
+              WHEN metric_type = 'primary' THEN {{ var('ab_z_primary') }}
+              ELSE {{ var('ab_z_corrected') }}
+          END AS z
+    FROM g
+),
+
 calc AS (
     SELECT
-        *
-        , 1.96 * sqrt(p_a * (1 - p_a) / n_a + p_b * (1- p_b) / n_b) AS margin
-    FROM g 
+          *
+        , z * sqrt(p_a * (1 - p_a) / n_a + p_b * (1 - p_b) / n_b) AS margin
+    FROM z_values
 ),
 
 final AS (
@@ -98,9 +109,10 @@ final AS (
         , metric_type
         , n_a
         , n_b
+        , z
         , ROUND(100 * p_a, 2)                  AS a_pct
         , ROUND(100 * p_b, 2)                  AS b_pct
-        , ROUND(100 * (p_b - p_a) / p_a, 1)    AS lift_pct
+        , ROUND(100 * (p_b - p_a) / NULLIF(p_a, 0), 1) AS lift_pct
         , ROUND(100 * (p_b - p_a - margin), 2) AS ci_low_pp
         , ROUND(100 * (p_b - p_a + margin), 2) AS ci_high_pp
         , CASE
