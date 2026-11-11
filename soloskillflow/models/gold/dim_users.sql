@@ -10,8 +10,8 @@ final AS (
     SELECT 
         u.user_id
         , u.signup_at
-        , u.signup_at::DATE                         AS signup_date
-        , date_trunc('week', u.signup_at)::DATE     AS signup_week
+        , {{ to_local_date('u.signup_at') }}        AS signup_date
+        , {{ to_local_week('u.signup_at') }}        AS signup_week
         , u.country
         , u.device
         , u.traffic_source

@@ -9,7 +9,7 @@ users AS (
 daily AS (
     SELECT
         user_id
-        , event_ts::DATE                AS  activity_date
+        , {{ to_local_date('event_ts') }} AS activity_date
         , COUNT(*)                      AS events_count
         , COUNT(DISTINCT session_id)    AS sessions_count
     FROM events

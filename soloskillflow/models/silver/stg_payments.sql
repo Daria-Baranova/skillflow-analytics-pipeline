@@ -15,7 +15,7 @@ cleaned AS (
         , user_id
         , subscription_id
         , paid_at
-        , paid_at::DATE AS paid_date
+        , {{ to_local_date('paid_at') }} AS paid_date
         , currency      AS currency_code
         , replace(
             regexp_replace(amount_raw, '[^0-9,.-]', '', 'g'), 

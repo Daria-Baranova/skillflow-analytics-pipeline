@@ -39,4 +39,6 @@ models:
       +materialized: table
       +grants:
         select: ['superset_reader']
+vars:
+  reporting_tz: 'Europe/Kyiv'   # бізнес-часовий пояс: межі днів і тижнів, дата курсу НБУ
     
