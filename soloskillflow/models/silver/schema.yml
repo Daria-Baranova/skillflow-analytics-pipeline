@@ -107,6 +107,8 @@ models:
           - accepted_values:
               arguments:
                 values: ['A', 'B']
+      - name: has_conflicting_groups
+        data_tests: [not_null]
 
   - name: stg_lessons
     columns:
