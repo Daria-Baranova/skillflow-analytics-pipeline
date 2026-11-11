@@ -63,10 +63,16 @@ models:
             combination_of_columns: [spend_date, channel, country]
 
   - name: fct_experiment
-    description: "One row per A/B test participant with binary primary, secondary and guardrail metrics."
+    description: "One row per A/B participant (conflicting assignments and test accounts excluded). Outcomes count only after assigned_at, with event_time_tolerance_hours for the known event-time shift."
     columns:
       - name: user_id
         data_tests: [unique, not_null]
+      - name: experiment_group
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['A', 'B']
 
   - name: fct_experiment_results
     description: "A/B test summary: lift and 95% CI per metric, result = better / worse / no difference."

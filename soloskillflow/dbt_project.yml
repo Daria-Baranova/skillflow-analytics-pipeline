@@ -41,4 +41,4 @@ models:
         select: ['superset_reader']
 vars:
   reporting_tz: 'Europe/Kyiv'   # бізнес-часовий пояс: межі днів і тижнів, дата курсу НБУ
-  funnel_order_tolerance_hours: 3   # допуск на відомий зсув часу подій (~2% подій мають −3h)
+  event_time_tolerance_hours: 3   # допуск на відомий зсув часу подій (~2% подій мають −3h)

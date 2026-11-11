@@ -47,7 +47,7 @@ Profiling of `bronze` tables and how each issue is handled in `silver` (dbt stag
 | NULL `user_id` | 1 575 | recovered from `session_id` (`S<user_id>-<date>`) |
 | `event_name`, `platform` in mixed case | ~45 000 | `lower(trim())` |
 | Lesson completed before signup event — offsets are whole days (−1…−9 days), not a timezone shift | 66 users | flagged `has_invalid_ttfv`; `hours_to_first_value` = NULL; monitored by a `warn` test on raw timestamps |
-| ~2% of single events of every type shifted by about −3h (same timezone bug as in duplicates); ~100 per step shifted by whole days | ~770 users per funnel step | strict funnel requires step order with a 3-hour tolerance (`funnel_order_tolerance_hours`) |
+| ~2% of single events of every type shifted by about −3h (same timezone bug as in duplicates); ~100 per step shifted by whole days | ~770 users per funnel step | strict funnel requires step order with a 3-hour tolerance (`event_time_tolerance_hours`) |
 
 ## experiments (S3)
 | Issue | Rows | Fix in `stg_experiments` |

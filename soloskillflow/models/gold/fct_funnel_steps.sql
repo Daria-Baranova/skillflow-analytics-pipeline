@@ -34,7 +34,7 @@ checked AS (
               WHEN step_at IS NULL THEN false
               WHEN step_order = 1  THEN true
               ELSE coalesce(
-                       step_at >= prev_step_at - INTERVAL '{{ var("funnel_order_tolerance_hours") }} hours'
+                       step_at >= prev_step_at - INTERVAL '{{ var("event_time_tolerance_hours") }} hours'
                      , false)
           END AS reached_in_order
     FROM ordered
