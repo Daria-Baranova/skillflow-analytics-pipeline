@@ -39,6 +39,9 @@ models:
       +materialized: table
       +grants:
         select: ['superset_reader']
+    intermediate:
+      +schema: intermediate
+      +materialized: view
 seeds:
   soloskillflow:
     +schema: silver   # довідники лежать поруч з очищеними даними

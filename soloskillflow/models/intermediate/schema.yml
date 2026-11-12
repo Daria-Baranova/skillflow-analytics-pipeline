@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: int_user_first_steps
+    description: "First timestamp of each product action per user, from events. signup_event_at is for reference only — the source of truth for signup time is dim_users.signup_at (the signup event has a known −3h shift)."
+    columns:
+      - name: user_id
+        data_tests: [unique, not_null]
