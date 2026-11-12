@@ -3,6 +3,10 @@ WITH source AS (
     FROM {{ source('bronze', 'users') }}
 ),
 
+country_aliases AS (
+    SELECT * FROM {{ ref('country_aliases') }}
+),
+
 deduplicate AS (
     SELECT
           *
@@ -12,28 +16,23 @@ deduplicate AS (
 
 cleaned AS (
     SELECT
-      user_id
+      d.user_id
     , coalesce(
-          signup_at
-        , to_timestamp(signup_at__v_text || ' +00', 'DD/MM/YYYY HH24:MI TZH')
+          d.signup_at
+        , to_timestamp(d.signup_at__v_text || ' +00', 'DD/MM/YYYY HH24:MI TZH')
       ) AS signup_at
-    , CASE upper(trim(country))
-        WHEN 'UA' THEN 'Ukraine'
-        WHEN 'PL' THEN 'Poland'
-        WHEN 'DE' THEN 'Germany'
-        WHEN 'US' THEN 'United States'
-        WHEN 'ES' THEN 'Spain'
-        WHEN 'CZ' THEN 'Czechia'
-        WHEN 'CA' THEN 'Canada'
-        ELSE initcap(trim(country))
-      END AS country
-    , trim(device)          AS device
-    , trim(traffic_source)  AS traffic_source
-    , learning_goal
-    , age_band
-    , coalesce(is_test_account = 1, false) AS is_test_account
-FROM deduplicate
-WHERE rn = 1
+    , ca.country
+    -- хендлер: країна вказана, але її написання невідоме довіднику
+    , (d.country IS NOT NULL AND ca.country IS NULL) AS is_unknown_country
+    , trim(d.device)          AS device
+    , trim(d.traffic_source)  AS traffic_source
+    , d.learning_goal
+    , d.age_band
+    , coalesce(d.is_test_account = 1, false) AS is_test_account
+FROM deduplicate AS d
+LEFT JOIN country_aliases AS ca
+    ON ca.alias = lower(trim(d.country))
+WHERE d.rn = 1
 )
 
 SELECT *

@@ -39,6 +39,9 @@ models:
       +materialized: table
       +grants:
         select: ['superset_reader']
+seeds:
+  soloskillflow:
+    +schema: silver   # довідники лежать поруч з очищеними даними
 vars:
   reporting_tz: 'Europe/Kyiv'   # бізнес-часовий пояс: межі днів і тижнів, дата курсу НБУ
   event_time_tolerance_hours: 3   # допуск на відомий зсув часу подій (~2% подій мають −3h)
