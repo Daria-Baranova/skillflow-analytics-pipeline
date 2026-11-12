@@ -145,3 +145,23 @@ models:
         data_tests: [unique, not_null]
       - name: country_code
         data_tests: [unique, not_null]
+
+  - name: dim_experiment_assignments
+    description: "Bridge between users and experiments: one row per user per experiment (group, assignment time, conflict flag). Keeps experiment attributes out of dim_users to avoid fan-out."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [experiment_id, user_id]
+    columns:
+      - name: user_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_users')
+                field: user_id
+      - name: experiment_group
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['A', 'B']
