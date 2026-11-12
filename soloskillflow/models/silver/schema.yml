@@ -31,6 +31,13 @@ models:
                 values: [false]
               config:
                 severity: warn
+      - name: is_unknown_channel
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [false]
+              config:
+                severity: warn
   - name: stg_payments
     columns:
       - name: payment_id
@@ -171,6 +178,26 @@ models:
           - accepted_values:
               arguments:
                 values: ['Organic', 'Paid Social', 'Google Ads', 'Referral', 'Email']
+      - name: is_unknown_channel
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [false]
+              config:
+                severity: warn
+      - name: is_unknown_country
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [false]
+              config:
+                severity: warn
+      - name: country
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('country_aliases')
+                field: country
   
   - name: stg_nbu_rates
     columns:

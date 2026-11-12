@@ -7,6 +7,10 @@ country_aliases AS (
     SELECT * FROM {{ ref('country_aliases') }}
 ),
 
+channel_aliases AS (
+    SELECT * FROM {{ ref('channel_aliases') }}
+),
+
 deduplicate AS (
     SELECT
           *
@@ -25,13 +29,16 @@ cleaned AS (
     -- хендлер: країна вказана, але її написання невідоме довіднику
     , (d.country IS NOT NULL AND ca.country IS NULL) AS is_unknown_country
     , trim(d.device)          AS device
-    , trim(d.traffic_source)  AS traffic_source
+    , ch.channel AS traffic_source
+    , (d.traffic_source IS NOT NULL AND ch.channel IS NULL) AS is_unknown_channel
     , d.learning_goal
     , d.age_band
     , coalesce(d.is_test_account = 1, false) AS is_test_account
 FROM deduplicate AS d
 LEFT JOIN country_aliases AS ca
-    ON ca.alias = lower(trim(d.country))
+    ON ca.alias = {{ alias_key('d.country') }}
+LEFT JOIN channel_aliases AS ch
+    ON ch.alias = {{ alias_key('d.traffic_source') }}
 WHERE d.rn = 1
 )
 
