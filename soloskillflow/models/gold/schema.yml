@@ -117,9 +117,15 @@ models:
     columns:
       - name: user_id
         data_tests: [unique, not_null]
-        
+
   - name: dim_plans
     description: "Subscription plans: months (for MRR) and coverage days per payment. Source: seeds/plans.csv."
     columns:
       - name: plan
+        data_tests: [unique, not_null]
+  
+  - name: dim_date
+    description: "Calendar dimension: one row per day between vars dim_date_start and dim_date_end. Weeks start on Monday."
+    columns:
+      - name: date_day
         data_tests: [unique, not_null]
