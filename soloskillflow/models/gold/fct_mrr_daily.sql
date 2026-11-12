@@ -6,9 +6,13 @@ WITH payments AS (
         , p.amount_usd
         , p.is_test_account
         , s.plan
+        , pl.months
+        , pl.coverage_days
     FROM {{ ref('fct_payments') }} AS p 
     INNER JOIN {{ ref('fct_subscriptions') }} AS s 
         ON s.subscription_id = p.subscription_id
+    INNER JOIN {{ ref('dim_plans') }} AS pl
+        ON pl.plan = s.plan
 ),
 
 refunds AS (
@@ -25,17 +29,9 @@ coverage AS (
         p.subscription_id
         , p.plan
         , p.paid_date AS start_date
-        , p.paid_date + CASE p.plan
-                            WHEN 'monthly'   THEN 30
-                            WHEN 'quarterly' THEN 90
-                            WHEN 'annual'    THEN 365
-                        END AS end_date
+        , p.paid_date + p.coverage_days AS end_date
         , r.refund_date
-        , p.amount_usd / CASE p.plan
-                            WHEN 'monthly'   THEN 1
-                            WHEN 'quarterly' THEN 3
-                            WHEN 'annual'    THEN 12
-                        END AS monthly_value_usd
+        , p.amount_usd / p.months AS monthly_value_usd
     FROM payments AS p 
     LEFT JOIN refunds AS r 
         ON r.subscription_id = p.subscription_id

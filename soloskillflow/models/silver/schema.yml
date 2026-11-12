@@ -82,9 +82,10 @@ models:
                 field: user_id
       - name: plan
         data_tests:
-          - accepted_values:
+          - relationships:
               arguments:
-                values: ['monthly', 'quarterly', 'annual']
+                to: ref('dim_plans')
+                field: plan
       - name: trial_status
         data_tests:
           - accepted_values:

@@ -104,14 +104,22 @@ models:
               arguments:
                 min_value: 0
                 max_value: 100
+
   - name: fct_mrr_daily
     description: "Daily MRR by plan. Each successful payment covers 30/90/365 days (monthly/quarterly/annual); a refund ends coverage. Annual = price / 12, quarterly = price / 3. Test accounts excluded."
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns: [mrr_date, plan]
+
   - name: fct_user_revenue
     description: "One row per user with lifetime net revenue in USD (refunds subtracted). Base for ARPU / ARPPU and unit economics by channel."
     columns:
       - name: user_id
+        data_tests: [unique, not_null]
+        
+  - name: dim_plans
+    description: "Subscription plans: months (for MRR) and coverage days per payment. Source: seeds/plans.csv."
+    columns:
+      - name: plan
         data_tests: [unique, not_null]

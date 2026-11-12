@@ -1,0 +1,4 @@
+plan,plan_order,months,coverage_days
+monthly,1,1,30
+quarterly,2,3,90
+annual,3,12,365
