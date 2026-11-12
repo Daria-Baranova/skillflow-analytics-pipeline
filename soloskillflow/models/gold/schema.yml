@@ -129,3 +129,19 @@ models:
     columns:
       - name: date_day
         data_tests: [unique, not_null]
+
+  - name: dim_channels
+    description: "Acquisition channels with is_paid flag (Organic = free). Source: seeds/channels.csv."
+    columns:
+      - name: channel
+        data_tests: [unique, not_null]
+      - name: is_paid
+        data_tests: [not_null]
+
+  - name: dim_countries
+    description: "Countries with ISO code, built from seeds/country_aliases.csv."
+    columns:
+      - name: country
+        data_tests: [unique, not_null]
+      - name: country_code
+        data_tests: [unique, not_null]

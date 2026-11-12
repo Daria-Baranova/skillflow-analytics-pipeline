@@ -1,0 +1,6 @@
+channel,channel_order,is_paid
+Organic,1,false
+Paid Social,2,true
+Google Ads,3,true
+Referral,4,true
+Email,5,true

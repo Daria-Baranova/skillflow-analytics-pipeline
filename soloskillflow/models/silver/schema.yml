@@ -207,3 +207,12 @@ models:
           - accepted_values:
               arguments:
                 values: ['USD', 'EUR']
+  
+  - name: channel_aliases
+    columns:
+      - name: channel
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('channels')
+                field: channel
