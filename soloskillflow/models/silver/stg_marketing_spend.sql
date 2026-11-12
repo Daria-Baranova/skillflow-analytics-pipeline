@@ -13,10 +13,7 @@ channel_aliases AS (
 parsed AS (
     SELECT 
           *
-        , replace(
-                regexp_replace(spend_usd, '[^0-9,.-]', '', 'g'),
-                ',', '.'
-        )::NUMERIC(12,2) AS spend_usd_num
+        , {{ parse_amount('spend_usd') }} AS spend_usd_num
     FROM source
 ),
 

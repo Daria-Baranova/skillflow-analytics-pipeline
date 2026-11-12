@@ -17,10 +17,7 @@ cleaned AS (
         , paid_at
         , {{ to_local_date('paid_at') }} AS paid_date
         , currency      AS currency_code
-        , replace(
-            regexp_replace(amount_raw, '[^0-9,.-]', '', 'g'), 
-            ',', '.'
-        )::NUMERIC(12, 2) AS amount
+        , {{ parse_amount('amount_raw') }} AS amount
         , lower(trim(status)) AS status
         , is_refund = 1 AS is_refund
     FROM deduplicated
