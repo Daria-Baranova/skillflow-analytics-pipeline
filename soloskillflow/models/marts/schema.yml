@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: mart_users
+    description: "Dashboard mart: one row per real user (test accounts excluded here — the only place in the project). Joins user attributes, channel, country, main experiment group, first product steps and lifetime net revenue."
+    columns:
+      - name: user_id
+        data_tests: [unique, not_null]
+      - name: is_activated
+        data_tests: [not_null]
+      - name: is_paying
+        data_tests: [not_null]

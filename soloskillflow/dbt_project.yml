@@ -22,6 +22,10 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+# права на читання схем для BI: виконується наприкінці кожного запуску dbt
+on-run-end:
+  - "GRANT USAGE ON SCHEMA gold TO superset_reader"
+  - "GRANT USAGE ON SCHEMA marts TO superset_reader"
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -42,6 +46,11 @@ models:
     intermediate:
       +schema: intermediate
       +materialized: view
+    marts:
+      +schema: marts
+      +materialized: table
+      +grants:
+        select: ['superset_reader']
 seeds:
   soloskillflow:
     +schema: silver   # довідники лежать поруч з очищеними даними
@@ -52,3 +61,4 @@ vars:
   ab_z_corrected: 2.64    # Бонферроні: 5% / 6 інших метрик → 99.17% CI
   dim_date_start: '2026-01-01'   # календар: перший день (включно)
   dim_date_end: '2027-01-01'     # календар: межа (не включно)
+  main_experiment_id: 'EXP_2026_06_ONBOARDING_PLAN'   # експеримент, групу якого показує дашборд
