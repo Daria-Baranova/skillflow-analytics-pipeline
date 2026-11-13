@@ -10,3 +10,18 @@ models:
         data_tests: [not_null]
       - name: is_paying
         data_tests: [not_null]
+
+  - name: mart_funnel_steps
+    description: "Dashboard mart: strict funnel, one row per user per reached step. A step counts only if all previous steps were reached in time order (event_time_tolerance_hours)."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [user_id, step_order]
+    columns:
+      - name: user_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('mart_users')
+                field: user_id

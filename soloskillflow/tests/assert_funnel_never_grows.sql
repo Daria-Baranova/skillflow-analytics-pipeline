@@ -1,7 +1,7 @@
 -- Правило: на кожному кроці воронки людей не більше, ніж на попередньому.
 WITH steps AS (
     SELECT step_order, count(*) AS users
-    FROM {{ ref('fct_funnel_steps') }}
+    FROM {{ ref('mart_funnel_steps') }}
     GROUP BY 1
 )
 SELECT *
