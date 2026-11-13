@@ -165,3 +165,31 @@ models:
           - accepted_values:
               arguments:
                 values: ['A', 'B']
+
+  - name: fct_marketing_spend
+    description: "Fact: daily marketing spend. Grain = spend_date × channel × country. Keys and measures only; attributes live in dim_channels / dim_countries. Negative spend is NULL with is_negative_spend flag."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [spend_date, channel, country]
+    columns:
+      - name: spend_date
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_day
+      - name: channel
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_channels')
+                field: channel
+      - name: country
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_countries')
+                field: country
