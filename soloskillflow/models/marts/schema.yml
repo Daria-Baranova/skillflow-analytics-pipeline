@@ -76,17 +76,32 @@ models:
 
   - name: mart_mrr_daily
     description: "Dashboard mart: daily MRR by plan for real users. Each successful payment covers dim_plans.coverage_days; a refund ends coverage; monthly value = price / dim_plans.months. Calendar from dim_date."
+    config:
+      contract:
+        enforced: true
+    constraints:
+      - type: primary_key
+        columns: [mrr_date, plan]
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns: [mrr_date, plan]
     columns:
       - name: mrr_date
+        data_type: date
         data_tests:
           - relationships:
               arguments:
                 to: ref('dim_date')
                 field: date_day
+      - name: plan
+        data_type: text
+      - name: plan_order
+        data_type: integer
+      - name: active_subscriptions
+        data_type: bigint
+      - name: mrr_usd
+        data_type: numeric
     
   - name: mart_acquisition_daily
     description: "Dashboard mart: acquisition by day × channel × country on a full spine (dim_date × dim_channels × dim_countries + 'Unknown'), so no signup is lost. spend_usd is NULL where spend is unknown. CAC = SUM(spend_usd) / SUM(signups_with_spend); CAC paying = SUM(spend_usd) / SUM(paying_users_with_spend)."
