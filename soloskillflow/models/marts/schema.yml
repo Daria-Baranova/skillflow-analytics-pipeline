@@ -73,3 +73,17 @@ models:
         data_tests: [unique, not_null]
       - name: amount_usd
         data_tests: [not_null]
+
+  - name: mart_mrr_daily
+    description: "Dashboard mart: daily MRR by plan for real users. Each successful payment covers dim_plans.coverage_days; a refund ends coverage; monthly value = price / dim_plans.months. Calendar from dim_date."
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [mrr_date, plan]
+    columns:
+      - name: mrr_date
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_day
