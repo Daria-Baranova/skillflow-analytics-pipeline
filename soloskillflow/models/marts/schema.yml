@@ -43,3 +43,19 @@ models:
           - dbt_utils.accepted_range:
               arguments:
                 min_value: 0
+
+  - name: mart_retention_cohorts
+    description: "Dashboard mart: weekly signup cohorts with additive eligible/returned counts for D1, D7, D14. Totals = SUM(returned) / SUM(eligible). D30 not measurable (activity tracked up to day 21)."
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "d1_returned <= d1_eligible AND d7_returned <= d7_eligible AND d14_returned <= d14_eligible"
+    columns:
+      - name: signup_week
+        data_tests: [unique, not_null]
+
+  - name: mart_retention_curve
+    description: "Dashboard mart: retention curve by day N after signup (0..20) with additive eligible_users / returned_users."
+    columns:
+      - name: day_n
+        data_tests: [unique, not_null]
