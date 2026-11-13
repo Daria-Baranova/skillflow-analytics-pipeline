@@ -9,6 +9,13 @@ models:
     constraints:
       - type: primary_key
         columns: [user_id]
+    data_tests:
+      # тест на СИРІ дані: скільки уроків завершено раніше за реєстрацію
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "lesson_completed_at IS NULL OR lesson_completed_at >= signup_at"
+          config:
+            severity: warn
     columns:
       - name: user_id
         data_type: bigint
