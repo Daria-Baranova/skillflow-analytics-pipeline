@@ -5,7 +5,7 @@ WITH groups AS (
     SELECT
           count(*) FILTER (WHERE experiment_group = 'A') AS n_a
         , count(*) FILTER (WHERE experiment_group = 'B') AS n_b
-    FROM {{ ref('fct_experiment') }}
+    FROM {{ ref('mart_experiment_users') }}
 ),
 
 chi AS (

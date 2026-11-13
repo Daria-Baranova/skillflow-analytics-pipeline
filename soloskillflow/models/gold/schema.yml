@@ -193,3 +193,15 @@ models:
               arguments:
                 to: ref('dim_countries')
                 field: country
+
+  - name: fct_app_errors
+    description: "Fact: one row per app error. Orphan user_ids are known (see silver tests)."
+    columns:
+      - name: error_id
+        data_tests: [unique, not_null]
+
+  - name: fct_support_tickets
+    description: "Fact: one row per support ticket."
+    columns:
+      - name: ticket_id
+        data_tests: [unique, not_null]

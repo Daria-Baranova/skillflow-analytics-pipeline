@@ -97,3 +97,21 @@ models:
       - dbt_utils.expression_is_true:
           arguments:
             expression: "signups_with_spend <= signups AND paying_users <= signups"
+
+  - name: mart_experiment_users
+    description: "Dashboard mart: one row per real participant of the main A/B test (var main_experiment_id). Conflicting assignments excluded. Outcome flags count only events after assigned_at minus event_time_tolerance_hours."
+    columns:
+      - name: user_id
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('mart_users')
+                field: user_id
+      - name: experiment_group
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['A', 'B']
