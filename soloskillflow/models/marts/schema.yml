@@ -1,84 +1,303 @@
 version: 2
 
+# Усі вітрини мають контракт (+contract у dbt_project.yml):
+# кожна колонка описана з типом, а первинний ключ створюється в Postgres.
+
 models:
   - name: mart_users
     description: "Dashboard mart: one row per real user (test accounts excluded here — the only place in the project). Joins user attributes, channel, country, main experiment group, first product steps and lifetime net revenue."
+    constraints:
+      - type: primary_key
+        columns: [user_id]
     columns:
       - name: user_id
+        data_type: bigint
         data_tests: [unique, not_null]
+      - name: signup_at
+        data_type: timestamptz
+        description: "Signup time. Single source of truth: users table."
+      - name: signup_date
+        data_type: date
+        description: "Signup day in the reporting timezone (var reporting_tz)."
+      - name: signup_week
+        data_type: date
+        description: "Monday of the signup week in the reporting timezone."
+      - name: country
+        data_type: text
+        description: "Normalized country (seed country_aliases). NULL = unknown."
+      - name: country_code
+        data_type: text
+        description: "ISO 2-letter country code."
+      - name: device
+        data_type: text
+      - name: traffic_source
+        data_type: text
+        description: "Acquisition channel (seed channel_aliases)."
+      - name: is_paid_channel
+        data_type: boolean
+        description: "False only for Organic (seed channels)."
+      - name: learning_goal
+        data_type: text
+      - name: age_band
+        data_type: text
+      - name: experiment_group
+        data_type: text
+        description: "Group A / B in the main experiment. NULL = conflicting assignment."
+      - name: onboarding_started_at
+        data_type: timestamptz
+        description: "First time of the step (int_user_first_steps). Same for the next 5 *_at columns."
+      - name: onboarding_completed_at
+        data_type: timestamptz
+      - name: paywall_viewed_at
+        data_type: timestamptz
+      - name: trial_activated_at
+        data_type: timestamptz
+      - name: lesson_started_at
+        data_type: timestamptz
+      - name: lesson_completed_at
+        data_type: timestamptz
       - name: is_activated
+        data_type: boolean
+        description: "Activation = at least one completed lesson."
         data_tests: [not_null]
+      - name: has_invalid_ttfv
+        data_type: boolean
+        description: "True if the first completed lesson is earlier than signup (data issue, see docs/data_quality.md)."
+      - name: hours_to_first_value
+        data_type: numeric
+        description: "TTFV: hours from signup to the first completed lesson. NULL if not activated or invalid."
+      - name: net_revenue_usd
+        data_type: numeric
+        description: "Lifetime net revenue in USD (refunds are negative)."
+      - name: payments_count
+        data_type: bigint
+        description: "Number of successful payments (refunds not counted)."
       - name: is_paying
+        data_type: boolean
+        description: "Has at least one payment."
         data_tests: [not_null]
 
   - name: mart_funnel_steps
     description: "Dashboard mart: strict funnel, one row per user per reached step. A step counts only if all previous steps were reached in time order (event_time_tolerance_hours)."
+    constraints:
+      - type: primary_key
+        columns: [user_id, step_order]
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns: [user_id, step_order]
     columns:
       - name: user_id
+        data_type: bigint
         data_tests:
           - not_null
           - relationships:
               arguments:
                 to: ref('mart_users')
                 field: user_id
-              
+      - name: step_order
+        data_type: integer
+        description: "1 = signup … 7 = lesson completed."
+      - name: step_name
+        data_type: text
+      - name: signup_week
+        data_type: date
+      - name: traffic_source
+        data_type: text
+      - name: experiment_group
+        data_type: text
+      - name: country
+        data_type: text
+      - name: device
+        data_type: text
+
   - name: mart_user_activity_daily
     description: "Dashboard mart: one row per real user per active day. user_type = New users (signup day) / Returning users. Base for DAU, stickiness and retention."
+    constraints:
+      - type: primary_key
+        columns: [user_id, activity_date]
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns: [user_id, activity_date]
     columns:
-      - name: user_type
-        data_tests:
-          - accepted_values:
-              arguments:
-                values: ['New users', 'Returning users']
+      - name: user_id
+        data_type: bigint
+      - name: activity_date
+        data_type: date
+        description: "Active day in the reporting timezone."
       - name: days_since_signup
+        data_type: integer
         data_tests:
           - dbt_utils.accepted_range:
               arguments:
                 min_value: 0
+      - name: user_type
+        data_type: text
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['New users', 'Returning users']
+      - name: signup_date
+        data_type: date
+      - name: signup_week
+        data_type: date
+      - name: traffic_source
+        data_type: text
+      - name: experiment_group
+        data_type: text
+      - name: country
+        data_type: text
+      - name: events_count
+        data_type: bigint
+      - name: sessions_count
+        data_type: bigint
 
   - name: mart_retention_cohorts
     description: "Dashboard mart: weekly signup cohorts with additive eligible/returned counts for D1, D7, D14. Totals = SUM(returned) / SUM(eligible). D30 not measurable (activity tracked up to day 21)."
+    constraints:
+      - type: primary_key
+        columns: [signup_week]
     data_tests:
       - dbt_utils.expression_is_true:
           arguments:
             expression: "d1_returned <= d1_eligible AND d7_returned <= d7_eligible AND d14_returned <= d14_eligible"
     columns:
       - name: signup_week
+        data_type: date
         data_tests: [unique, not_null]
+      - name: cohort_size
+        data_type: bigint
+      - name: d1_eligible
+        data_type: bigint
+        description: "Denominator: users whose day N is already inside the data window. Same for d7 / d14."
+      - name: d1_returned
+        data_type: bigint
+        description: "Numerator: users active on day N. Same for d7 / d14."
+      - name: d7_eligible
+        data_type: bigint
+      - name: d7_returned
+        data_type: bigint
+      - name: d14_eligible
+        data_type: bigint
+      - name: d14_returned
+        data_type: bigint
+      - name: d1_retention_pct
+        data_type: numeric
+        description: "Ready % for one cohort. For totals use SUM(returned) / SUM(eligible), not an average of %."
+      - name: d7_retention_pct
+        data_type: numeric
+      - name: d14_retention_pct
+        data_type: numeric
 
   - name: mart_retention_curve
     description: "Dashboard mart: retention curve by day N after signup (0..20) with additive eligible_users / returned_users."
+    constraints:
+      - type: primary_key
+        columns: [day_n]
     columns:
       - name: day_n
+        data_type: integer
         data_tests: [unique, not_null]
+      - name: eligible_users
+        data_type: bigint
+      - name: returned_users
+        data_type: bigint
+      - name: retention_pct
+        data_type: numeric
 
   - name: mart_subscriptions
     description: "Dashboard mart: one row per subscription of a real user. Trial → Paid = converted / finished trials."
+    constraints:
+      - type: primary_key
+        columns: [subscription_id]
     columns:
       - name: subscription_id
+        data_type: text
         data_tests: [unique, not_null]
+      - name: user_id
+        data_type: bigint
+      - name: plan
+        data_type: text
+      - name: plan_order
+        data_type: integer
+      - name: trial_status
+        data_type: text
+        description: "active / converted / cancelled."
+      - name: trial_started_at
+        data_type: timestamptz
+      - name: converted_at
+        data_type: timestamptz
+      - name: cancelled_at
+        data_type: timestamptz
+      - name: is_converted
+        data_type: boolean
+        description: "Numerator of Trial → Paid."
+      - name: is_trial_finished
+        data_type: boolean
+        description: "Denominator of Trial → Paid: trial is not active anymore."
+      - name: first_payment_at
+        data_type: timestamptz
+        description: "First successful (non-refund) payment."
+      - name: plan_price_usd
+        data_type: numeric
+      - name: monthly_value_usd
+        data_type: numeric
+        description: "Plan price / dim_plans.months."
+      - name: net_revenue_usd
+        data_type: numeric
+      - name: has_refund
+        data_type: boolean
+      - name: signup_week
+        data_type: date
+      - name: traffic_source
+        data_type: text
+      - name: country
+        data_type: text
+      - name: experiment_group
+        data_type: text
 
   - name: mart_payments
     description: "Dashboard mart: one row per payment of a real user, amounts in USD by daily NBU rate. Payments of users missing from the users table are kept (attributes NULL)."
+    constraints:
+      - type: primary_key
+        columns: [payment_id]
     columns:
       - name: payment_id
+        data_type: text
         data_tests: [unique, not_null]
+      - name: user_id
+        data_type: bigint
+      - name: subscription_id
+        data_type: text
+      - name: paid_at
+        data_type: timestamptz
+      - name: paid_date
+        data_type: date
+        description: "Payment day in the reporting timezone."
+      - name: currency_code
+        data_type: text
+      - name: amount
+        data_type: numeric
+        description: "Amount in the original currency."
       - name: amount_usd
+        data_type: numeric
+        description: "Amount in USD by the NBU daily rate. Refunds are negative."
         data_tests: [not_null]
+      - name: status
+        data_type: text
+        description: "succeeded / refunded."
+      - name: is_refund
+        data_type: boolean
+      - name: traffic_source
+        data_type: text
+      - name: country
+        data_type: text
+      - name: experiment_group
+        data_type: text
 
   - name: mart_mrr_daily
     description: "Dashboard mart: daily MRR by plan for real users. Each successful payment covers dim_plans.coverage_days; a refund ends coverage; monthly value = price / dim_plans.months. Calendar from dim_date."
-    config:
-      contract:
-        enforced: true
     constraints:
       - type: primary_key
         columns: [mrr_date, plan]
@@ -102,9 +321,12 @@ models:
         data_type: bigint
       - name: mrr_usd
         data_type: numeric
-    
+
   - name: mart_acquisition_daily
     description: "Dashboard mart: acquisition by day × channel × country on a full spine (dim_date × dim_channels × dim_countries + 'Unknown'), so no signup is lost. spend_usd is NULL where spend is unknown. CAC = SUM(spend_usd) / SUM(signups_with_spend); CAC paying = SUM(spend_usd) / SUM(paying_users_with_spend)."
+    constraints:
+      - type: primary_key
+        columns: [report_date, channel, country]
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
@@ -112,11 +334,52 @@ models:
       - dbt_utils.expression_is_true:
           arguments:
             expression: "signups_with_spend <= signups AND paying_users <= signups"
+    columns:
+      - name: report_date
+        data_type: date
+      - name: channel
+        data_type: text
+      - name: channel_order
+        data_type: integer
+      - name: is_paid_channel
+        data_type: boolean
+      - name: country
+        data_type: text
+        description: "'Unknown' = users without a country."
+      - name: country_code
+        data_type: text
+      - name: has_spend_data
+        data_type: boolean
+        description: "True if spend for this day × channel × country is known."
+      - name: spend_usd
+        data_type: numeric
+        description: "NULL = spend unknown (not zero)."
+      - name: impressions
+        data_type: bigint
+      - name: clicks
+        data_type: bigint
+      - name: signups
+        data_type: bigint
+        description: "All signups of real users."
+      - name: paying_users
+        data_type: bigint
+      - name: signups_with_spend
+        data_type: bigint
+        description: "CAC denominator: signups only where spend is known."
+      - name: paying_users_with_spend
+        data_type: bigint
+        description: "CAC paying denominator: paying users only where spend is known."
 
   - name: mart_experiment_users
     description: "Dashboard mart: one row per real participant of the main A/B test (var main_experiment_id). Conflicting assignments excluded. Outcome flags count only events after assigned_at minus event_time_tolerance_hours."
+    constraints:
+      - type: primary_key
+        columns: [user_id]
     columns:
+      - name: experiment_id
+        data_type: text
       - name: user_id
+        data_type: bigint
         data_tests:
           - unique
           - not_null
@@ -125,19 +388,80 @@ models:
                 to: ref('mart_users')
                 field: user_id
       - name: experiment_group
+        data_type: text
         data_tests:
           - not_null
           - accepted_values:
               arguments:
                 values: ['A', 'B']
+      - name: assigned_at
+        data_type: timestamptz
+      - name: signup_week
+        data_type: date
+      - name: traffic_source
+        data_type: text
+      - name: country
+        data_type: text
+      - name: device
+        data_type: text
+      - name: is_trial
+        data_type: boolean
+        description: "Primary metric: trial started after assignment."
+      - name: is_paid
+        data_type: boolean
+      - name: is_activated
+        data_type: boolean
+      - name: is_returned_d1
+        data_type: boolean
+      - name: is_onboarding_completed
+        data_type: boolean
+        description: "Guardrail: higher is better."
+      - name: had_app_error
+        data_type: boolean
+        description: "Guardrail: lower is better."
+      - name: had_support_ticket
+        data_type: boolean
+        description: "Guardrail: lower is better."
 
   - name: mart_experiment_results
     description: "Dashboard mart: A/B summary, one row per metric. Lift of B vs A and CI: z = ab_z_primary for the primary metric, ab_z_corrected (Bonferroni) for the others. Result = better / worse / no difference."
+    constraints:
+      - type: primary_key
+        columns: [metric]
     columns:
       - name: metric
+        data_type: text
         data_tests: [unique, not_null]
+      - name: metric_type
+        data_type: text
+        description: "primary / secondary / guardrail."
+      - name: metric_order
+        data_type: integer
+      - name: n_a
+        data_type: bigint
+      - name: n_b
+        data_type: bigint
+      - name: z
+        data_type: numeric
+        description: "1.96 for primary, 2.64 (Bonferroni) for the others."
+      - name: a_pct
+        data_type: numeric
+      - name: b_pct
+        data_type: numeric
+      - name: lift_pct
+        data_type: numeric
+        description: "(B − A) / A, %."
+      - name: ci_low_pp
+        data_type: numeric
+        description: "Lower bound of the CI for B − A, percentage points."
+      - name: ci_high_pp
+        data_type: numeric
+        description: "Upper bound of the CI for B − A, percentage points."
       - name: result
+        data_type: text
         data_tests:
           - accepted_values:
               arguments:
                 values: ['better', 'worse', 'no difference']
+      - name: result_label
+        data_type: text

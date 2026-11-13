@@ -49,6 +49,8 @@ models:
     marts:
       +schema: marts
       +materialized: table
+      +contract:
+        enforced: true
       +grants:
         select: ['superset_reader']
 seeds:
