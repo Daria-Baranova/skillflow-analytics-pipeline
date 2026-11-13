@@ -2,7 +2,7 @@
 -- Тестові акаунти виключаються тут (єдине місце в проєкті).
 WITH users AS (
     SELECT * FROM {{ ref('dim_users') }}
-    WHERE is_test_account IS NOT TRUE
+    WHERE {{ is_real_user('user_id') }}
 ),
 
 countries AS (

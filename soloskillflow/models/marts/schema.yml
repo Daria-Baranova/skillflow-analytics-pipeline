@@ -59,3 +59,17 @@ models:
     columns:
       - name: day_n
         data_tests: [unique, not_null]
+
+  - name: mart_subscriptions
+    description: "Dashboard mart: one row per subscription of a real user. Trial → Paid = converted / finished trials."
+    columns:
+      - name: subscription_id
+        data_tests: [unique, not_null]
+
+  - name: mart_payments
+    description: "Dashboard mart: one row per payment of a real user, amounts in USD by daily NBU rate. Payments of users missing from the users table are kept (attributes NULL)."
+    columns:
+      - name: payment_id
+        data_tests: [unique, not_null]
+      - name: amount_usd
+        data_tests: [not_null]
