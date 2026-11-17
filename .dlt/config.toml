@@ -4,3 +4,7 @@
 [buckets]
 s3 = "s3://skillflow-v2-raw-daria/raw/source=skillflow"
 gcs = "gs://skillflow-v2-raw-gcs-daria/raw/source=skillflow"
+
+[nbu]
+start_date = "2026-06-01"   # перший день курсів: платежі починаються в червні
+currencies = ["usd", "eur"]

@@ -4,9 +4,11 @@
 Адреси бакетів — у .dlt/config.toml, ключі доступу — у .dlt/secrets.toml.
 """
 import json
+from datetime import date
 
 import dlt
 from dlt.sources.filesystem import filesystem, read_csv
+from dlt.sources.helpers import requests  # як requests, але з повторами при збоях
 
 # бакет → назва pipeline і таблиці з форматом файлів.
 # Назву pipeline не міняємо: за нею dlt знаходить потрібні ключі в secrets.toml.
@@ -32,6 +34,8 @@ SOURCES = {
         },
     },
 }
+
+NBU_URL = "https://bank.gov.ua/NBU_Exchange/exchange_site"
 
 @dlt.transformer(standalone=True)
 def read_jsonl_blocks(items, chunksize=10_000, block_mb=2):
@@ -88,9 +92,44 @@ def load_bucket(source_key):
     print(info)
 
 
+@dlt.resource(name="nbu_rates")
+def nbu_rates(start_date, end_date, currencies):
+    """Курси НБУ за період: один запит на кожну валюту."""
+    for cc in currencies:
+        params = {
+            "start": start_date.strftime("%Y%m%d"),
+            "end": end_date.strftime("%Y%m%d"),
+            "valcode": cc,
+            "sort": "exchangedate",
+            "order": "asc",
+            "json": "",
+        }
+        # повтори при 429/5xx і обривах зв'язку; після невдалих спроб — помилка
+        response = requests.get(NBU_URL, params=params, timeout=30)
+        yield response.json()
+
+
+def load_nbu():
+    """Завантажує курси НБУ від nbu.start_date до сьогодні в bronze."""
+    start_date = date.fromisoformat(dlt.config["nbu.start_date"])
+    end_date = date.today()
+
+    pipeline = dlt.pipeline(
+        pipeline_name="nbu_ingest",
+        destination="postgres",
+        dataset_name="bronze",
+    )
+    info = pipeline.run(
+        nbu_rates(start_date, end_date, dlt.config["nbu.currencies"]),
+        write_disposition="replace",
+    )
+    print(info)
+
+
 def main():
     for source_key in SOURCES:
         load_bucket(source_key)
+    load_nbu()
 
 
 if __name__ == "__main__":
