@@ -33,15 +33,30 @@ SOURCES = {
     },
 }
 
-
 @dlt.transformer(standalone=True)
-def read_jsonl_fast(items, chunksize=10_000):
-    """Читає jsonl-файл і віддає рядки пачками по chunksize."""
+def read_jsonl_blocks(items, chunksize=10_000, block_mb=2):
+    """Читає jsonl потоково: блоками по block_mb МБ, віддає рядки пачками по chunksize.
+
+    Пам'ять залежить від розміру блока, а не від розміру файлу.
+    """
+    block_size = block_mb * 1024 * 1024
     for file_obj in items:
-        with file_obj.open() as f:
-            lines = f.read().splitlines()
-        for i in range(0, len(lines), chunksize):
-            yield [json.loads(line) for line in lines[i:i + chunksize]]
+        with file_obj.open(mode="rb", block_size=block_size) as f:
+            rows = []
+            tail = b""  # неповний рядок з кінця попереднього блока
+            while block := f.read(block_size):
+                lines = (tail + block).split(b"\n")
+                tail = lines.pop()
+                for line in lines:
+                    if line.strip():
+                        rows.append(json.loads(line))
+                        if len(rows) >= chunksize:
+                            yield rows
+                            rows = []
+            if tail.strip():
+                rows.append(json.loads(tail))
+            if rows:
+                yield rows
 
 
 def bucket_resources(bucket_url, tables):
@@ -49,7 +64,7 @@ def bucket_resources(bucket_url, tables):
     resources = []
     for table, fmt in tables.items():
         files = filesystem(bucket_url=bucket_url, file_glob=f"table={table}/**/*.{fmt}")
-        reader = read_csv() if fmt == "csv" else read_jsonl_fast()
+        reader = read_csv() if fmt == "csv" else read_jsonl_blocks()
         resources.append((files | reader).with_name(table))
     return resources
 
