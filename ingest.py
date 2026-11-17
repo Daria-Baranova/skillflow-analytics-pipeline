@@ -4,7 +4,7 @@
 Адреси бакетів — у .dlt/config.toml, ключі доступу — у .dlt/secrets.toml.
 """
 import json
-from datetime import date
+from datetime import date, datetime
 
 import dlt
 from dlt.sources.filesystem import filesystem, read_csv
@@ -92,9 +92,19 @@ def load_bucket(source_key):
     print(info)
 
 
-@dlt.resource(name="nbu_rates")
-def nbu_rates(start_date, end_date, currencies):
-    """Курси НБУ за період: один запит на кожну валюту."""
+@dlt.resource(
+    name="nbu_rates",
+    write_disposition="merge",
+    primary_key=("cc", "exchangedate"),
+)
+def nbu_rates(currencies, rate_date=dlt.sources.incremental("rate_date")):
+    """Курси НБУ від останньої завантаженої дати до сьогодні: один запит на валюту.
+
+    Перший запуск починає з initial_value, наступні — з дати, яку dlt запам'ятав.
+    """
+    start_date = date.fromisoformat(rate_date.last_value)
+    end_date = date.today()
+    print(f"НБУ: запитую курси з {start_date} по {end_date}")
     for cc in currencies:
         params = {
             "start": start_date.strftime("%Y%m%d"),
@@ -106,23 +116,27 @@ def nbu_rates(start_date, end_date, currencies):
         }
         # повтори при 429/5xx і обривах зв'язку; після невдалих спроб — помилка
         response = requests.get(NBU_URL, params=params, timeout=30)
-        yield response.json()
+        rows = response.json()
+        for row in rows:
+            # ISO-дата для курсора: "17.11.2026" → "2026-11-17"
+            row["rate_date"] = datetime.strptime(row["exchangedate"], "%d.%m.%Y").date().isoformat()
+        yield rows
 
 
 def load_nbu():
-    """Завантажує курси НБУ від nbu.start_date до сьогодні в bronze."""
-    start_date = date.fromisoformat(dlt.config["nbu.start_date"])
-    end_date = date.today()
-
+    """Довантажує нові курси НБУ в bronze (merge за ключем валюта + дата)."""
     pipeline = dlt.pipeline(
         pipeline_name="nbu_ingest",
         destination="postgres",
         dataset_name="bronze",
     )
-    info = pipeline.run(
-        nbu_rates(start_date, end_date, dlt.config["nbu.currencies"]),
-        write_disposition="replace",
+    rates = nbu_rates(
+        dlt.config["nbu.currencies"],
+        rate_date=dlt.sources.incremental(
+            "rate_date", initial_value=dlt.config["nbu.start_date"]
+        ),
     )
+    info = pipeline.run(rates)
     print(info)
 
 
