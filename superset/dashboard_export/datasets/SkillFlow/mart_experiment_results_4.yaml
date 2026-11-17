@@ -1,12 +1,12 @@
-table_name: fct_marketing
-main_dttm_col: spend_date
+table_name: mart_experiment_results
+main_dttm_col: null
 currency_code_column: null
 description: null
 default_endpoint: null
 offset: 0
 cache_timeout: null
 catalog: soloskillflow
-schema: gold
+schema: marts
 sql: ''
 params: null
 template_params: null
@@ -16,56 +16,8 @@ extra: null
 normalize_columns: false
 always_filter_main_dttm: false
 folders: []
-uuid: 0b147e33-dd2c-420d-bdec-1f0f72258ff0
+uuid: 3152aae7-60e7-4468-8ac2-9832f88de0d7
 metrics:
-- metric_name: cac_paying
-  verbose_name: CAC per paying customer, USD
-  metric_type: null
-  expression: ROUND(SUM(spend_usd) / NULLIF(SUM(paying_users), 0), 0)
-  description: "Marketing spend divided by paying customers acquired. Compare with\
-    \ revenue per customer: healthy business needs LTV : CAC \u2265 3 : 1."
-  d3format: null
-  currency: null
-  extra:
-    warning_markdown: ''
-  warning_text: null
-- metric_name: cac_signup
-  verbose_name: CAC per signup, USD
-  metric_type: null
-  expression: ROUND(SUM(spend_usd) / NULLIF(SUM(signups), 0), 2)
-  description: "Spend per new user. Cheap signups are useless if they never pay \u2014\
-    \ read with CAC per paying customer."
-  d3format: null
-  currency: null
-  extra: {}
-  warning_text: null
-- metric_name: mkt_signups
-  verbose_name: Signups (paid-tracked)
-  metric_type: null
-  expression: SUM(signups)
-  description: Signups in countries with marketing spend data (US, DE, UA, PL).
-  d3format: null
-  currency: null
-  extra: {}
-  warning_text: null
-- metric_name: paying_users
-  verbose_name: Paying users
-  metric_type: null
-  expression: SUM(paying_users)
-  description: Users from these signups who converted to paid.
-  d3format: null
-  currency: null
-  extra: {}
-  warning_text: null
-- metric_name: spend
-  verbose_name: Spend, USD
-  metric_type: null
-  expression: SUM(spend_usd)
-  description: Marketing spend in USD.
-  d3format: null
-  currency: null
-  extra: {}
-  warning_text: null
 - metric_name: count
   verbose_name: COUNT(*)
   metric_type: count
@@ -77,33 +29,7 @@ metrics:
     warning_markdown: ''
   warning_text: null
 columns:
-- column_name: country
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: VARCHAR
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: spend_date
-  verbose_name: null
-  is_dttm: true
-  is_active: true
-  type: DATE
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: paying_users
+- column_name: n_a
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -116,7 +42,7 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: clicks
+- column_name: n_b
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -129,33 +55,7 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: impressions
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: BIGINT
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: signups
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: BIGINT
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: spend_usd
+- column_name: ci_high_pp
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -168,7 +68,72 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: channel
+- column_name: ci_low_pp
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NUMERIC
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: a_pct
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NUMERIC
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: b_pct
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NUMERIC
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: lift_pct
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NUMERIC
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: metric_order
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: result_label
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -177,6 +142,58 @@ columns:
   groupby: true
   filterable: true
   expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: metric_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: metric
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: result
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: z
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NUMERIC
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null

@@ -1,12 +1,12 @@
-table_name: fct_subscriptions
-main_dttm_col: trial_started_at
+table_name: mart_acquisition_daily
+main_dttm_col: report_date
 currency_code_column: null
 description: null
 default_endpoint: null
 offset: 0
 cache_timeout: null
 catalog: soloskillflow
-schema: gold
+schema: marts
 sql: ''
 params: null
 template_params: null
@@ -16,20 +16,59 @@ extra: null
 normalize_columns: false
 always_filter_main_dttm: false
 folders: []
-uuid: 04a4f014-e92b-4e5d-81a4-cc971c08a7a8
+uuid: 0b147e33-dd2c-420d-bdec-1f0f72258ff0
 metrics:
-- metric_name: trial_to_paid
-  verbose_name: "Trial \u2192 Paid, %"
+- metric_name: cac_paying
+  verbose_name: CAC per paying customer, USD
   metric_type: null
-  expression: ROUND(100.0 * COUNT(*) FILTER (WHERE is_converted AND NOT is_test_account)
-    / NULLIF(COUNT(*) FILTER (WHERE is_trial_finished AND NOT is_test_account), 0),
-    1)
-  description: Share of finished trials that converted to a paid subscription. Active
-    trials are excluded because their outcome is not known yet. Shows if users see
-    enough value in 7 days to pay.
+  expression: ROUND(SUM(spend_usd) / NULLIF(SUM(paying_users_with_spend), 0), 0)
+  description: "Marketing spend divided by paying customers acquired. Compare with\
+    \ revenue per customer: healthy business needs LTV : CAC \u2265 3 : 1."
   d3format: null
   currency: null
-  extra: {}
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: cac_signup
+  verbose_name: CAC per signup, USD
+  metric_type: null
+  expression: ROUND(SUM(spend_usd) / NULLIF(SUM(signups_with_spend), 0), 2)
+  description: "Spend per new user. Cheap signups are useless if they never pay \u2014\
+    \ read with CAC per paying customer."
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: mkt_signups
+  verbose_name: Signups (paid-tracked)
+  metric_type: null
+  expression: SUM(signups_with_spend)
+  description: Signups in countries with marketing spend data (US, DE, UA, PL).
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: paying_users
+  verbose_name: Paying users
+  metric_type: null
+  expression: SUM(paying_users_with_spend)
+  description: Users from these signups who converted to paid.
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: spend
+  verbose_name: Spend, USD
+  metric_type: null
+  expression: SUM(spend_usd)
+  description: Marketing spend in USD.
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
   warning_text: null
 - metric_name: count
   verbose_name: COUNT(*)
@@ -42,137 +81,20 @@ metrics:
     warning_markdown: ''
   warning_text: null
 columns:
-- column_name: trial_started_at
-  verbose_name: null
+- column_name: report_date
+  verbose_name: ''
   is_dttm: true
   is_active: true
-  type: TIMESTAMP WITH TIME ZONE
+  type: DATE
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: first_payment_at
-  verbose_name: null
-  is_dttm: true
-  is_active: true
-  type: TIMESTAMP WITH TIME ZONE
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: cancelled_at
-  verbose_name: null
-  is_dttm: true
-  is_active: true
-  type: TIMESTAMP WITH TIME ZONE
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: converted_at
-  verbose_name: null
-  is_dttm: true
-  is_active: true
-  type: TIMESTAMP WITH TIME ZONE
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: subscription_id
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: VARCHAR
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: plan
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: VARCHAR
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: is_test_account
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: BOOLEAN
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: is_trial_finished
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: BOOLEAN
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: has_refund
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: BOOLEAN
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: is_converted
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: BOOLEAN
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: user_id
+- column_name: paying_users
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -185,7 +107,46 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: monthly_values_usd
+- column_name: clicks
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: impressions
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: signups
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: spend_usd
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -198,33 +159,7 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: plan_prise_usd
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: NUMERIC
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: net_revenue_usd
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: NUMERIC
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: trial_status
+- column_name: channel
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -233,6 +168,97 @@ columns:
   groupby: true
   filterable: true
   expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: country
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: has_spend_data
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: is_paid_channel
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: paying_users_with_spend
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: signups_with_spend
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: channel_order
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: country_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null

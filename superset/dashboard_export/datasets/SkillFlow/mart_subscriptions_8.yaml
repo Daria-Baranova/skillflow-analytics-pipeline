@@ -1,12 +1,12 @@
-table_name: fct_experiment_results
-main_dttm_col: null
+table_name: mart_subscriptions
+main_dttm_col: trial_started_at
 currency_code_column: null
 description: null
 default_endpoint: null
 offset: 0
 cache_timeout: null
 catalog: soloskillflow
-schema: gold
+schema: marts
 sql: ''
 params: null
 template_params: null
@@ -16,8 +16,21 @@ extra: null
 normalize_columns: false
 always_filter_main_dttm: false
 folders: []
-uuid: 3152aae7-60e7-4468-8ac2-9832f88de0d7
+uuid: 04a4f014-e92b-4e5d-81a4-cc971c08a7a8
 metrics:
+- metric_name: trial_to_paid
+  verbose_name: "Trial \u2192 Paid, %"
+  metric_type: null
+  expression: ROUND(100.0 * COUNT(*) FILTER (WHERE is_converted) / NULLIF(COUNT(*)
+    FILTER (WHERE is_trial_finished), 0), 1)
+  description: Share of finished trials that converted to a paid subscription. Active
+    trials are excluded because their outcome is not known yet. Shows if users see
+    enough value in 7 days to pay.
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
 - metric_name: count
   verbose_name: COUNT(*)
   metric_type: count
@@ -29,7 +42,98 @@ metrics:
     warning_markdown: ''
   warning_text: null
 columns:
-- column_name: n_a
+- column_name: trial_started_at
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: TIMESTAMP WITH TIME ZONE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: first_payment_at
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: TIMESTAMP WITH TIME ZONE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: cancelled_at
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: TIMESTAMP WITH TIME ZONE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: converted_at
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: TIMESTAMP WITH TIME ZONE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: is_trial_finished
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: has_refund
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: is_converted
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: user_id
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -42,20 +146,7 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: n_b
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: BIGINT
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: ci_high_pp
+- column_name: net_revenue_usd
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -68,11 +159,11 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: ci_low_pp
+- column_name: trial_status
   verbose_name: null
   is_dttm: false
   is_active: true
-  type: NUMERIC
+  type: TEXT
   advanced_data_type: null
   groupby: true
   filterable: true
@@ -81,11 +172,11 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: a_pct
+- column_name: subscription_id
   verbose_name: null
   is_dttm: false
   is_active: true
-  type: NUMERIC
+  type: TEXT
   advanced_data_type: null
   groupby: true
   filterable: true
@@ -94,11 +185,11 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: b_pct
+- column_name: plan
   verbose_name: null
   is_dttm: false
   is_active: true
-  type: NUMERIC
+  type: TEXT
   advanced_data_type: null
   groupby: true
   filterable: true
@@ -107,7 +198,20 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: lift_pct
+- column_name: signup_week
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: plan_price_usd
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -115,12 +219,25 @@ columns:
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: metric_order
+- column_name: monthly_value_usd
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NUMERIC
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: plan_order
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -128,12 +245,12 @@ columns:
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: result_label
+- column_name: traffic_source
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -141,12 +258,12 @@ columns:
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: metric_type
+- column_name: experiment_group
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -154,12 +271,12 @@ columns:
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: metric
+- column_name: country
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -167,20 +284,7 @@ columns:
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: result
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: TEXT
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null

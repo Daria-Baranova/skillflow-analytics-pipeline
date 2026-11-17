@@ -1,12 +1,12 @@
-table_name: fct_funnel_steps
-main_dttm_col: signup_week
+table_name: mart_user_activity_daily
+main_dttm_col: activity_date
 currency_code_column: null
 description: null
 default_endpoint: null
 offset: 0
 cache_timeout: null
 catalog: soloskillflow
-schema: gold
+schema: marts
 sql: ''
 params: null
 template_params: null
@@ -16,17 +16,30 @@ extra: null
 normalize_columns: false
 always_filter_main_dttm: false
 folders: []
-uuid: b02cbc24-7438-4f9c-8683-49c28ffad26b
+uuid: 62b3a4ac-600d-4d3f-8382-fe317bfe3e75
 metrics:
-- metric_name: users
-  verbose_name: Users
+- metric_name: stickiness
+  verbose_name: Stickiness (DAU/MAU), %
   metric_type: null
-  expression: COUNT(DISTINCT user_id)
-  description: 'Unique users who reached the step (strict funnel: all previous steps
-    reached too).'
+  expression: ROUND(100.0 * COUNT(*) / NULLIF(COUNT(DISTINCT activity_date), 0) /
+    NULLIF(COUNT(DISTINCT user_id), 0), 1)
+  description: "Average DAU divided by unique users active in the selected period.\
+    \ Shows how many days per month the product is used. 10\u201320% is typical, 20%+\
+    \ is good."
   d3format: null
   currency: null
-  extra: {}
+  extra:
+    warning_markdown: ''
+  warning_text: null
+- metric_name: dau
+  verbose_name: Active users
+  metric_type: null
+  expression: COUNT(DISTINCT user_id)
+  description: Unique active users in the period (per day on a daily chart = DAU).
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
   warning_text: null
 - metric_name: count
   verbose_name: COUNT(*)
@@ -39,11 +52,63 @@ metrics:
     warning_markdown: ''
   warning_text: null
 columns:
+- column_name: activity_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: signup_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
 - column_name: signup_week
   verbose_name: null
   is_dttm: true
   is_active: true
   type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: events_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: sessions_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
   advanced_data_type: null
   groupby: true
   filterable: true
@@ -65,37 +130,11 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: step_order
+- column_name: days_since_signup
   verbose_name: null
   is_dttm: false
   is_active: true
   type: INTEGER
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: traffic_source
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: TEXT
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: step_name
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: TEXT
   advanced_data_type: null
   groupby: true
   filterable: true
@@ -117,7 +156,7 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: device
+- column_name: traffic_source
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -125,7 +164,20 @@ columns:
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: user_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null
@@ -138,7 +190,7 @@ columns:
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null

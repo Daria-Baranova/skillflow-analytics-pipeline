@@ -1,4 +1,4 @@
-table_name: fct_user_revenue
+table_name: mart_retention_cohorts
 main_dttm_col: signup_week
 currency_code_column: null
 description: null
@@ -6,7 +6,7 @@ default_endpoint: null
 offset: 0
 cache_timeout: null
 catalog: soloskillflow
-schema: gold
+schema: marts
 sql: ''
 params: null
 template_params: null
@@ -16,29 +16,19 @@ extra: null
 normalize_columns: false
 always_filter_main_dttm: false
 folders: []
-uuid: 5bb631d5-4183-48c4-94e4-6ef398adad84
+uuid: 642aba69-72fc-4aad-afef-48b413ce4026
 metrics:
-- metric_name: paying_share
-  verbose_name: Paying users, %
+- metric_name: d1_retention
+  verbose_name: D1 Retention, %
   metric_type: null
-  expression: ROUND(100.0 * COUNT(*) FILTER (WHERE is_paying AND NOT is_test_account)
-    / NULLIF(COUNT(*) FILTER (WHERE NOT is_test_account), 0), 1)
-  description: "Share of registered users who paid at least once. ARPU = ARPPU \xD7\
-    \ paying share."
+  expression: ROUND(100.0 * SUM(d1_returned) / NULLIF(SUM(d1_eligible), 0), 1)
+  description: "Share of new users who came back the day after signup, weighted by\
+    \ cohort size. Shows if the first experience hooked the user. Edtech benchmark:\
+    \ 25\u201340%."
   d3format: null
   currency: null
-  extra: {}
-  warning_text: null
-- metric_name: arpu
-  verbose_name: ARPU, USD
-  metric_type: null
-  expression: ROUND(SUM(net_revenue_usd) FILTER (WHERE NOT is_test_account) / NULLIF(COUNT(*)
-    FILTER (WHERE NOT is_test_account), 0), 2)
-  description: Net revenue per registered user (paying or not). Compare with CAC per
-    signup.
-  d3format: null
-  currency: null
-  extra: {}
+  extra:
+    warning_markdown: ''
   warning_text: null
 - metric_name: count
   verbose_name: COUNT(*)
@@ -51,11 +41,11 @@ metrics:
     warning_markdown: ''
   warning_text: null
 columns:
-- column_name: is_test_account
+- column_name: d14_retention_pct
   verbose_name: null
   is_dttm: false
   is_active: true
-  type: BOOLEAN
+  type: NUMERIC
   advanced_data_type: null
   groupby: true
   filterable: true
@@ -64,11 +54,24 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: is_paying
+- column_name: d1_retention_pct
   verbose_name: null
   is_dttm: false
   is_active: true
-  type: BOOLEAN
+  type: NUMERIC
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: d7_retention_pct
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NUMERIC
   advanced_data_type: null
   groupby: true
   filterable: true
@@ -90,7 +93,7 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: payments_count
+- column_name: cohort_size
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -103,7 +106,7 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: user_id
+- column_name: d14_eligible
   verbose_name: null
   is_dttm: false
   is_active: true
@@ -111,59 +114,72 @@ columns:
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: net_revenue_usd
+- column_name: d14_returned
   verbose_name: null
   is_dttm: false
   is_active: true
-  type: NUMERIC
+  type: BIGINT
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: traffic_source
+- column_name: d1_eligible
   verbose_name: null
   is_dttm: false
   is_active: true
-  type: TEXT
+  type: BIGINT
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: experiment_group
+- column_name: d1_returned
   verbose_name: null
   is_dttm: false
   is_active: true
-  type: TEXT
+  type: BIGINT
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: country
+- column_name: d7_eligible
   verbose_name: null
   is_dttm: false
   is_active: true
-  type: TEXT
+  type: BIGINT
   advanced_data_type: null
   groupby: true
   filterable: true
-  expression: ''
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: d7_returned
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null

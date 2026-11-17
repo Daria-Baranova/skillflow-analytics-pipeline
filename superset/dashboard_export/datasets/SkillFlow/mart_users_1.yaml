@@ -1,4 +1,4 @@
-table_name: fct_funnel
+table_name: mart_users
 main_dttm_col: signup_week
 currency_code_column: null
 description: null
@@ -6,7 +6,7 @@ default_endpoint: null
 offset: 0
 cache_timeout: null
 catalog: soloskillflow
-schema: gold
+schema: marts
 sql: ''
 params: null
 template_params: null
@@ -18,25 +18,24 @@ always_filter_main_dttm: false
 folders: []
 uuid: 5d8463d3-2e10-4669-a3cf-91a5a10d4b74
 metrics:
-- metric_name: activation_rate
-  verbose_name: Activation Rate, %
+- metric_name: median_ttfv_hours
+  verbose_name: Time to First Value, h (median)
   metric_type: null
-  expression: ROUND(100.0 * COUNT(*) FILTER (WHERE is_activated AND NOT is_test_account)
-    / NULLIF(COUNT(*) FILTER (WHERE NOT is_test_account), 0), 1)
-  description: "Share of new users who completed their first lesson (aha-moment).\
-    \ Leading indicator of retention. Benchmark for edtech: 20\u201340%."
+  expression: PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY hours_to_first_value)
+  description: Median hours from signup to first completed lesson. The longer it is,
+    the more users drop off before seeing value.
   d3format: null
   currency: null
   extra:
     warning_markdown: ''
   warning_text: null
-- metric_name: median_ttfv_hours
-  verbose_name: Time to First Value, h (median)
+- metric_name: activation_rate
+  verbose_name: Activation Rate, %
   metric_type: null
-  expression: PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY hours_to_first_value) FILTER
-    (WHERE NOT is_test_account)
-  description: Median hours from signup to first completed lesson. The longer it is,
-    the more users drop off before seeing value.
+  expression: ROUND(100.0 * COUNT(*) FILTER (WHERE is_activated) / NULLIF(COUNT(*),
+    0), 1)
+  description: "Share of new users who completed their first lesson (aha-moment).\
+    \ Leading indicator of retention. Benchmark for edtech: 20\u201340%."
   d3format: null
   currency: null
   extra:
@@ -45,13 +44,32 @@ metrics:
 - metric_name: signups
   verbose_name: Signups
   metric_type: null
-  expression: COUNT(*) FILTER (WHERE NOT is_test_account)
+  expression: COUNT(*)
   description: "Number of new users who signed up, test accounts excluded. Volume\
     \ metric \u2014 always read together with CAC and activation."
   d3format: null
   currency: null
   extra:
     warning_markdown: ''
+  warning_text: null
+- metric_name: paying_share
+  verbose_name: Paying users, %
+  metric_type: null
+  expression: ROUND(100.0 * COUNT(*) FILTER (WHERE is_paying) / NULLIF(COUNT(*), 0),
+    1)
+  description: null
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+- metric_name: arpu
+  verbose_name: ARPU, USD
+  metric_type: null
+  expression: ROUND(SUM(net_revenue_usd) / NULLIF(COUNT(*), 0), 2)
+  description: null
+  d3format: null
+  currency: null
+  extra: {}
   warning_text: null
 - metric_name: count
   verbose_name: COUNT(*)
@@ -155,19 +173,6 @@ columns:
   python_date_format: null
   datetime_format: null
   extra: {}
-- column_name: is_test_account
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: BOOLEAN
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
 - column_name: is_activated
   verbose_name: null
   is_dttm: false
@@ -242,6 +247,149 @@ columns:
   groupby: true
   filterable: true
   expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: is_paid_channel
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: has_invalid_ttfv
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: is_paying
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: signup_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: payments_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: net_revenue_usd
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NUMERIC
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: age_band
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: learning_goal
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: country_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: device
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: country
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null

@@ -1,4 +1,4 @@
-table_name: fct_payments
+table_name: mart_payments
 main_dttm_col: paid_at
 currency_code_column: null
 description: null
@@ -6,7 +6,7 @@ default_endpoint: null
 offset: 0
 cache_timeout: null
 catalog: soloskillflow
-schema: gold
+schema: marts
 sql: ''
 params: null
 template_params: null
@@ -19,21 +19,21 @@ folders: []
 uuid: 952b2545-afe6-4382-b883-31ba4560b9ee
 metrics:
 - metric_name: refund_rate
-  verbose_name: Refund rate, %v
+  verbose_name: Refund rate, %
   metric_type: null
-  expression: ROUND(100.0 * COUNT(*) FILTER (WHERE is_refund AND NOT is_test_account)
-    / NULLIF(COUNT(*) FILTER (WHERE NOT is_refund AND NOT is_test_account), 0), 1)
+  expression: ROUND(100.0 * COUNT(*) FILTER (WHERE is_refund) / NULLIF(COUNT(*) FILTER
+    (WHERE NOT is_refund), 0), 1)
   description: Refunds as % of successful payments. Growth = paywall promises more
     than the product gives.
   d3format: null
   currency: null
-  extra: {}
+  extra:
+    warning_markdown: ''
   warning_text: null
 - metric_name: arppu
   verbose_name: ARPPU, USD
   metric_type: null
-  expression: ROUND(SUM(amount_usd) FILTER (WHERE NOT is_test_account) / NULLIF(COUNT(DISTINCT
-    user_id) FILTER (WHERE NOT is_test_account), 0), 2)
+  expression: ROUND(SUM(amount_usd) / NULLIF(COUNT(DISTINCT user_id), 0), 2)
   description: Average revenue per paying user (net of refunds, in USD). Shows how
     much a paying customer brings; used for pricing decisions.
   d3format: null
@@ -57,84 +57,6 @@ columns:
   is_dttm: true
   is_active: true
   type: TIMESTAMP WITH TIME ZONE
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: amount
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: NUMERIC(12, 2)
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: payment_id
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: VARCHAR
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: subscription_id
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: VARCHAR
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: currency_code
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: VARCHAR
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: status
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: VARCHAR
-  advanced_data_type: null
-  groupby: true
-  filterable: true
-  expression: ''
-  description: null
-  python_date_format: null
-  datetime_format: null
-  extra: {}
-- column_name: is_test_account
-  verbose_name: null
-  is_dttm: false
-  is_active: true
-  type: BOOLEAN
   advanced_data_type: null
   groupby: true
   filterable: true
@@ -191,6 +113,110 @@ columns:
   groupby: true
   filterable: true
   expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: amount
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: NUMERIC
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: payment_id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: subscription_id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: currency_code
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: status
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: traffic_source
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: experiment_group
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  datetime_format: null
+  extra: {}
+- column_name: country
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: TEXT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
   description: null
   python_date_format: null
   datetime_format: null

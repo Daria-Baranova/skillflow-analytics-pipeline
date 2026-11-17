@@ -1,4 +1,4 @@
-database_name: SkillFlow Gold
+database_name: SkillFlow
 sqlalchemy_uri: postgresql+psycopg2://superset_reader:XXXXXXXXXX@host.docker.internal:5432/soloskillflow
 cache_timeout: null
 expose_in_sqllab: true

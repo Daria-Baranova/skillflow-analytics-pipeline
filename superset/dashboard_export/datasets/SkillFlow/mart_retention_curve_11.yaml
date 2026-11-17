@@ -1,4 +1,4 @@
-table_name: fct_retention_curve
+table_name: mart_retention_curve
 main_dttm_col: null
 currency_code_column: null
 description: null
@@ -6,7 +6,7 @@ default_endpoint: null
 offset: 0
 cache_timeout: null
 catalog: soloskillflow
-schema: gold
+schema: marts
 sql: ''
 params: null
 template_params: null
@@ -18,28 +18,6 @@ always_filter_main_dttm: false
 folders: []
 uuid: 77268fae-24e2-406d-9c2a-1aebefe952f6
 metrics:
-- metric_name: stickiness
-  verbose_name: Stickiness (DAU/MAU), %
-  metric_type: null
-  expression: ROUND(100.0 * COUNT(*) FILTER (WHERE NOT is_test_account) / NULLIF(COUNT(DISTINCT
-    activity_date), 0) / NULLIF(COUNT(DISTINCT user_id) FILTER (WHERE NOT is_test_account),
-    0), 1)
-  description: "Average DAU divided by unique users active in the selected period.\
-    \ Shows how many days per month the product is used. 10\u201320% is typical, 20%+\
-    \ is good."
-  d3format: null
-  currency: null
-  extra: {}
-  warning_text: null
-- metric_name: dau
-  verbose_name: Active users
-  metric_type: null
-  expression: COUNT(DISTINCT user_id) FILTER (WHERE NOT is_test_account)
-  description: Unique active users in the period (per day on a daily chart = DAU).
-  d3format: null
-  currency: null
-  extra: {}
-  warning_text: null
 - metric_name: count
   verbose_name: COUNT(*)
   metric_type: count

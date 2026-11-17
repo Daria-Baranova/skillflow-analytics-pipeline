@@ -470,17 +470,22 @@ position:
     id: MARKDOWN-Mz7udBP7l_IYSZIzNbfX8
     meta:
       code: "### Should we roll out the new onboarding (group B)?\r\n\r\n**Experiment:**\
-        \ EXP_2026_06_ONBOARDING_PLAN \xB7 A = current onboarding, B = new \xB7 ~20k\
-        \ users per group \xB7 June 2026.\r\n\r\n**How to read:** \U0001F7E2 B significantly\
-        \ better \xB7 \U0001F534 B significantly worse \xB7 \u26AA no significant\
-        \ difference. *CI* = 95% confidence interval of the difference in percentage\
-        \ points: if it does not cross 0, the effect is real.\r\n\r\n**Decision: \u274C\
-        \ do not roll out as is.** B increases trial starts (+7%) and payments (+10%),\
-        \ but all three guardrails got significantly worse: app errors +29%, support\
-        \ tickets +16%, onboarding completion \u22121.1%. Errors grew on **all** screens\
-        \ \u2192 likely a technical bug in the B build. Fix the bug, review onboarding/account\
+        \ EXP_2026_06_ONBOARDING_PLAN \xB7 A = current onboarding, B = new \xB7 19,927\
+        \ vs 19,954 participants \xB7 June 2026.\r\n\r\n**Data checks:** \u2705 sample\
+        \ ratio 50/50 (no SRM) \xB7 60 users with conflicting group assignments and\
+        \ test accounts excluded \xB7 outcomes counted only after assignment.\r\n\r\
+        \n**How to read:** \U0001F7E2 B significantly better \xB7 \U0001F534 B significantly\
+        \ worse \xB7 \u26AA no significant difference. *CI* = confidence interval\
+        \ of the difference in percentage points; if it does not cross 0, the effect\
+        \ is real. Primary metric: 95% CI (z 1.96). Other 6 metrics: Bonferroni-corrected\
+        \ 99.17% CI (z 2.64) to avoid false wins.\r\n\r\n**Decision: \u274C do not\
+        \ roll out as is.** B lifts trial starts (**+6.9%**, primary), but the payment\
+        \ lift is **not significant** after correction, and all three guardrails got\
+        \ significantly worse: app errors **+29%**, support tickets **+16%**, onboarding\
+        \ completion **\u22121.1%** (borderline). Errors grew on **all** screens \u2192\
+        \ likely a technical bug in the B build. Fix the bug, review onboarding/account\
         \ tickets, then re-run the test."
-      height: 26
+      height: 29
       width: 12
     parents:
     - ROOT_ID
@@ -1450,10 +1455,5 @@ metadata:
     monthly: '#1f77b4'
     annual: '#aec7e8'
     quarterly: '#ff7f0e'
-    activation_rate: '#1FA8C9'
-    hours_to_first_value: '#1FA8C9'
-    Retention, %: '#1FA8C9'
-    New users: '#1FA8C9'
-    Returning users: '#454E7C'
 theme_uuid: null
 version: 1.0.0
