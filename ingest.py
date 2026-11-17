@@ -10,6 +10,8 @@ import dlt
 from dlt.sources.filesystem import filesystem, read_csv
 from dlt.sources.helpers import requests  # як requests, але з повторами при збоях
 
+from bronze_contract import NBU_SCHEMA_CONTRACT, SCHEMA_CONTRACT, column_hints
+
 # бакет → назва pipeline і таблиці з форматом файлів.
 # Назву pipeline не міняємо: за нею dlt знаходить потрібні ключі в secrets.toml.
 SOURCES = {
@@ -64,12 +66,15 @@ def read_jsonl_blocks(items, chunksize=10_000, block_mb=2):
 
 
 def bucket_resources(bucket_url, tables):
-    """Один dlt-ресурс на таблицю: файли з бакета → читач за форматом."""
+    """Один dlt-ресурс на таблицю: файли з бакета → читач за форматом → контракт."""
     resources = []
     for table, fmt in tables.items():
         files = filesystem(bucket_url=bucket_url, file_glob=f"table={table}/**/*.{fmt}")
         reader = read_csv() if fmt == "csv" else read_jsonl_blocks()
-        resources.append((files | reader).with_name(table))
+        resource = (files | reader).with_name(table)
+        # явні типи колонок і правила, що робити, коли дані їм не відповідають
+        resource.apply_hints(columns=column_hints(table), schema_contract=SCHEMA_CONTRACT)
+        resources.append(resource)
     return resources
 
 
@@ -96,6 +101,8 @@ def load_bucket(source_key):
     name="nbu_rates",
     write_disposition="merge",
     primary_key=("cc", "exchangedate"),
+    columns=column_hints("nbu_rates"),
+    schema_contract=NBU_SCHEMA_CONTRACT,
 )
 def nbu_rates(currencies, rate_date=dlt.sources.incremental("rate_date")):
     """Курси НБУ від останньої завантаженої дати до сьогодні: один запит на валюту.

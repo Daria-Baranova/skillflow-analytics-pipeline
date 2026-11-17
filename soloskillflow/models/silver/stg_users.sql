@@ -11,20 +11,32 @@ channel_aliases AS (
     SELECT * FROM {{ ref('channel_aliases') }}
 ),
 
+-- у bronze signup_at — сирий текст у трьох форматах, і всі три — час в UTC
+parsed AS (
+    SELECT
+          *
+        , CASE
+              -- 24/06/2026 10:55
+              WHEN signup_at LIKE '__/__/____%'
+                  THEN to_timestamp(signup_at || ' +00', 'DD/MM/YYYY HH24:MI TZH')
+              -- 2026-06-06 14:28:39 і 2026-06-03T17:30:52Z:
+              -- прибираємо Z і явно дописуємо +00, інакше Postgres візьме пояс сесії (Київ)
+              ELSE (rtrim(signup_at, 'Z') || '+00')::timestamptz
+          END AS signup_at_utc
+    FROM source
+),
+
 deduplicate AS (
     SELECT
           *
-        , row_number() OVER (PARTITION BY user_id ORDER BY signup_at) AS rn 
-    FROM source
+        , row_number() OVER (PARTITION BY user_id ORDER BY signup_at_utc) AS rn
+    FROM parsed
 ),
 
 cleaned AS (
     SELECT
       d.user_id
-    , coalesce(
-          d.signup_at
-        , to_timestamp(d.signup_at__v_text || ' +00', 'DD/MM/YYYY HH24:MI TZH')
-      ) AS signup_at
+    , d.signup_at_utc AS signup_at
     , ca.country
     -- хендлер: країна вказана, але її написання невідоме довіднику
     , (d.country IS NOT NULL AND ca.country IS NULL) AS is_unknown_country
