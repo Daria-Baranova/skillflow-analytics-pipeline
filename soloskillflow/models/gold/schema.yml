@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: dim_users
-    description: "One row per user: attributes, signup cohort (week), acquisition channel and A/B group."
+    description: "One row per user: attributes, signup cohort (week), acquisition channel and test-account flag. Experiment groups live in dim_experiment_assignments."
     columns:
       - name: user_id
         data_tests: [unique, not_null]
@@ -28,17 +28,11 @@ models:
         data_tests: [unique, not_null]
 
   - name: fct_user_activity
-    description: "One row per user per active day. Base for DAU/WAU/MAU, stickiness and retention."
+    description: "Fact: one row per user per day with events (day in reporting_tz). Keys and measures only; the 'after signup' rule lives in mart_user_activity_daily."
     data_tests:
       - dbt_utils.unique_combination_of_columns:
           arguments:
             combination_of_columns: [user_id, activity_date]
-    columns:
-      - name: days_since_signup
-        data_tests:
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
 
   - name: dim_plans
     description: "Subscription plans: months (for MRR) and coverage days per payment. Source: seeds/plans.csv."

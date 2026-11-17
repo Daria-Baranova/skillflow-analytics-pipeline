@@ -26,8 +26,8 @@ final AS (
         , s.is_converted
         , s.is_trial_finished
         , s.first_payment_at
-        , s.plan_prise_usd      AS plan_price_usd        -- виправлена назва
-        , s.monthly_values_usd  AS monthly_value_usd     -- виправлена назва
+        , s.plan_price_usd
+        , s.monthly_value_usd
         , s.net_revenue_usd
         , s.has_refund
         , u.signup_week
