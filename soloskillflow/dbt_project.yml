@@ -24,7 +24,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 # права на читання схем для BI: виконується наприкінці кожного запуску dbt
 on-run-end:
-  - "GRANT USAGE ON SCHEMA gold TO superset_reader"
   - "GRANT USAGE ON SCHEMA marts TO superset_reader"
 
 # Configuring models
@@ -41,8 +40,6 @@ models:
     gold:
       +schema: gold
       +materialized: table
-      +grants:
-        select: ['superset_reader']
     intermediate:
       +schema: intermediate
       +materialized: view
