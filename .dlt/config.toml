@@ -1,0 +1,6 @@
+# Не секрети: де лежать сирі дані.
+# Щоб запустити проєкт на своїх даних, створи бакет з такою ж структурою папок
+# і впиши його адресу тут. Ключі доступу — окремо, у .dlt/secrets.toml.
+[buckets]
+s3 = "s3://skillflow-v2-raw-daria/raw/source=skillflow"
+gcs = "gs://skillflow-v2-raw-gcs-daria/raw/source=skillflow"
